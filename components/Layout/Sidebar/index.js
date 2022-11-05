@@ -5,7 +5,7 @@ import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 import { MdSchool } from "react-icons/md";
 // import SubMenu from "./SubMenu";
 import Menu from "./Menu";
-import { dashboardLinks } from "./navlinks/dashboardLinks";
+import { dashboardLinks } from "./navlinks/dashboarshannonlinks";
 
 function Sidebar({ showMenu, setShowMenu, name }) {
   const router = useRouter();
@@ -31,7 +31,7 @@ function Sidebar({ showMenu, setShowMenu, name }) {
         </div>
 
         <div className="mt-3 mx-3 space-y-5">
-          {dashboardLinks &&
+          {dashboar &&
             dashboardLinks.map((navLink, i) => (
               <div key={i} className="">
                 <Link href={navLink.link} passHref>
