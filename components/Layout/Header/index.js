@@ -1,9 +1,17 @@
+import { useSession } from "next-auth/react";
 import React from "react";
 import useLogOut from "../../../hooks/useLogOut";
 import User from "./User";
 
 function Header() {
+  const { data } = useSession();
+
+  console.log("userid", data?.user?.username);
+
+  const username = data?.user?.username;
+
   const { logoutUser } = useLogOut();
+
   const handleLogout = () => {
     logoutUser();
   };
@@ -13,8 +21,8 @@ function Header() {
       {/* <div className="text-3xl font-semibold text-blue-600">Logo</div> */}
       <div className="flex justify-between items-center gap-10 lg:gap-[200px]">
         <div className="flex justify-between items-center gap-5 lg:gap-12 text-custom-gray2">
-          <p className="text-lg font-semibold">Email: email@email.com</p>
-          <p className="text-lg font-semibold">User ID: 176</p>
+          <p className="text-lg font-semibold">Userame: {username}</p>
+          {/* <p className="text-lg font-semibold">User ID: 176</p> */}
         </div>
 
         <button

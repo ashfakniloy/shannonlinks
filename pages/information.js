@@ -1,10 +1,16 @@
+import { getSession } from "next-auth/react";
 import React from "react";
 import { FaEnvelope } from "react-icons/fa";
 import Table from "../components/Table";
 import { infoColumn } from "../components/Table/columns/infoColumn";
-import { infoData } from "../data/infoData";
+import { API_URL } from "../config";
+// import { infoData } from "../data/infoData";
 
-function InformationPage() {
+function InformationPage({ data }) {
+  console.log(data);
+
+  const infoData = data?.users;
+
   return (
     <div className="">
       <div className="flex items-center gap-3">
@@ -19,6 +25,29 @@ function InformationPage() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const {
+    user: { username },
+  } = await getSession(context);
+
+  const url = `${API_URL}/${username}`;
+
+  const res = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      // Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.json();
+
+  console.log("data", data);
+
+  return {
+    props: { data },
+  };
 }
 
 export default InformationPage;

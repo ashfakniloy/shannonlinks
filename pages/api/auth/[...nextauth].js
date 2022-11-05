@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import cookie from "cookie";
 import { API_URL } from "../../../config";
+// import cookie from "cookie";
 
 const nextAuthOptions = (req, res) => {
   return {
@@ -31,7 +31,9 @@ const nextAuthOptions = (req, res) => {
 
           const user = await response.json();
 
-          console.log("main", user);
+          console.log(user);
+
+          // console.log("main", url);
 
           // if (response.ok && user) {
           if (response.ok) {

@@ -1,11 +1,11 @@
 export const infoColumn = [
-  {
-    Header: "serial",
-    accessor: "serial",
-  },
+  // {
+  //   Header: "serial",
+  //   accessor: "serial",
+  // },
   {
     Header: "website",
-    accessor: "website",
+    accessor: "site",
   },
   {
     Header: "email",
@@ -15,14 +15,14 @@ export const infoColumn = [
     Header: "password",
     accessor: "password",
   },
-  {
-    Header: "verify_code",
-    accessor: "verify_code",
-  },
-  {
-    Header: "date_time",
-    accessor: "date_time",
-  },
+  // {
+  //   Header: "verify_code",
+  //   accessor: "verify_code",
+  // },
+  // {
+  //   Header: "date_time",
+  //   accessor: "date_time",
+  // },
   // {
   //   Header: "date_time",
   //   accessor: "date_time",

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
 // import * as Yup from "yup";
 import { Formik, Form } from "formik";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 // import useLogin from "../Hooks/useLogin";
 // import { signIn, useSession } from "next-auth/react";
 // import Cookies from "js-cookie";
@@ -15,6 +14,7 @@ import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import Link from "next/link";
 import { TextField } from "../components/common/InputField";
 import useLogin from "../hooks/useLogin";
+import { getSession } from "next-auth/react";
 
 function SignInPage({ user, loginRoute, dashboardRoute }) {
   // const [loading, setLoading] = useState();
@@ -30,7 +30,7 @@ function SignInPage({ user, loginRoute, dashboardRoute }) {
   // });
 
   const initialvalues = {
-    email: "",
+    username: "",
     password: "",
   };
 
@@ -75,7 +75,11 @@ function SignInPage({ user, loginRoute, dashboardRoute }) {
                 <Form>
                   <div className="text-sm gap-y-5 md:gap-y-7">
                     <div className="lg:min-w-[350px] space-y-4">
-                      <TextField label="Email *" name="email" type="email" />
+                      <TextField
+                        label="Username *"
+                        name="username"
+                        type="text"
+                      />
                       <div className="relative">
                         <TextField
                           label="Password *"
@@ -120,6 +124,23 @@ function SignInPage({ user, loginRoute, dashboardRoute }) {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
 
 export default SignInPage;
