@@ -15,6 +15,10 @@ export const infoColumn = [
     Header: "password",
     accessor: "password",
   },
+  {
+    Header: "skipcode",
+    accessor: "skipcode",
+  },
   // {
   //   Header: "verify_code",
   //   accessor: "verify_code",
