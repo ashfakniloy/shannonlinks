@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
     user: { username },
   } = await getSession(context);
 
-  const url = `${API_URL}/${username}`;
+  const url = `${API_URL}/info/${username}`;
 
   const res = await fetch(url, {
     headers: {

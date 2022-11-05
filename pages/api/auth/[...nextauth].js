@@ -31,7 +31,7 @@ const nextAuthOptions = (req, res) => {
 
           const user = await response.json();
 
-          console.log(user);
+          // console.log(user);
 
           // console.log("main", url);
 
@@ -69,7 +69,7 @@ const nextAuthOptions = (req, res) => {
 
     callbacks: {
       jwt: async ({ token, user, account }) => {
-        // console.log("xxs", token);
+        console.log("xxs", token, user, account);
         if (user) {
           token.user = user;
 
