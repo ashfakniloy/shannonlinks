@@ -1,7 +1,6 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import useLogOut from "../../../hooks/useLogOut";
-import User from "./User";
 
 function Header() {
   const { data } = useSession();
@@ -31,7 +30,6 @@ function Header() {
         >
           Logout
         </button>
-        {/* <User /> */}
       </div>
     </div>
   );

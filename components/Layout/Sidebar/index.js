@@ -5,7 +5,7 @@ import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 import { MdSchool } from "react-icons/md";
 // import SubMenu from "./SubMenu";
 import Menu from "./Menu";
-import { dashboardLinks } from "./navlinks/dashboarshannonlinks";
+import { dashboardLinks } from "./navlinks/dashboardLinks";
 
 function Sidebar({ showMenu, setShowMenu, name }) {
   const router = useRouter();
@@ -27,11 +27,11 @@ function Sidebar({ showMenu, setShowMenu, name }) {
     >
       <div className="  items-center gap-10">
         <div className="text-white py-[16px] font-semibold">
-          <h1 className=" pl-6 text-3xl">DLINKS</h1>
+          <h1 className=" pl-6 text-2xl">Shannon Links</h1>
         </div>
 
         <div className="mt-3 mx-3 space-y-5">
-          {dashboar &&
+          {dashboardLinks &&
             dashboardLinks.map((navLink, i) => (
               <div key={i} className="">
                 <Link href={navLink.link} passHref>
