@@ -76,6 +76,7 @@ function Table({ columnsHeading, usersData }) {
     {
       columns,
       data,
+      initialState: { pageSize: 20 },
       // defaultColumn,
     },
     useGlobalFilter,
@@ -236,7 +237,7 @@ function Table({ columnsHeading, usersData }) {
             value={pageSize}
             onChange={(e) => setPageSize(Number(e.target.value))}
           >
-            {[10, 20, 50].map((pageSize) => (
+            {[20, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 {pageSize}
               </option>

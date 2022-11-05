@@ -8,27 +8,31 @@ function useLogin() {
   // const { data } = useSession();
   // const { id, user_name, institution_name, role } = data ? data.user : "";
 
-  const loginUser = async (values) => {
-    const res = await signIn("credentials", {
-      ...values,
-      // callbackUrl: `${window.location.origin}/dashboard`,
-      redirect: false,
-    });
+  const loginUser = async (values, formik) => {
+    if (values.username !== values.password) {
+      toast.error("Username and Password do not match");
+    } else {
+      const res = await signIn("credentials", {
+        ...values,
+        // callbackUrl: `${window.location.origin}/`,
+        redirect: false,
+      });
 
-    const { ok, error } = res;
+      const { ok, error } = res;
 
-    if (ok) {
-      console.log(res);
-      toast.success("Signed in Successfully");
-      await router.push("/");
-    }
-    // else {
-    //   toast.error("Something went wrong");
-    // }
-    if (error) {
-      console.log(res);
-      toast.error(error);
-      // toast.error("Something went wrong");
+      if (ok) {
+        console.log(res);
+        toast.success("Signed in Successfully");
+        await router.push("/");
+      }
+      // else {
+      //   toast.error("Something went wrong");
+      // }
+      if (error) {
+        console.log(res);
+        toast.error(error);
+        // toast.error("Something went wrong");
+      }
     }
   };
 
