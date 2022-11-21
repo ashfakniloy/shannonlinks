@@ -7,7 +7,7 @@ import { API_URL } from "../config";
 // import { infoData } from "../data/infoData";
 
 function InformationPage({ data }) {
-  console.log(data);
+  console.log("data is", data);
 
   const infoData = data?.users;
 
@@ -20,7 +20,7 @@ function InformationPage({ data }) {
         <h1 className="text-2xl font-bold text-custom-gray2">Information</h1>
       </div>
 
-      <div className="mt-7">
+      <div className="mt-7 bg-white rounded shadow-md">
         {infoData && <Table columnsHeading={infoColumn} usersData={infoData} />}
       </div>
     </div>
@@ -29,10 +29,13 @@ function InformationPage({ data }) {
 
 export async function getServerSideProps(context) {
   const {
-    user: { username },
+    user: { username, id, admin },
   } = await getSession(context);
+  // const username = session.user.username;
 
-  const url = `${API_URL}/info/${username}`;
+  console.log(username);
+
+  const url = `${API_URL}/info/${username}/${id}/${admin}`;
 
   const res = await fetch(url, {
     headers: {

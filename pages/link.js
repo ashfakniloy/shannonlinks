@@ -14,7 +14,7 @@ function LinkPage() {
         <h1 className="text-2xl font-bold text-custom-gray2">Link</h1>
       </div>
 
-      <div className="mt-7">
+      <div className="mt-7 bg-white rounded shadow">
         {linkData && <Table columnsHeading={linkColumn} usersData={linkData} />}
       </div>
     </div>

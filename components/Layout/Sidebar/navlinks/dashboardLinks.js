@@ -1,30 +1,4 @@
-// import { AiOutlineDashboard, AiFillBank } from "react-icons/ai";
-// import {
-//   FaClipboardList,
-//   FaMoneyBillAlt,
-//   FaCoins,
-//   FaUserTie,
-//   FaListUl,
-// } from "react-icons/fa";
-// import {
-//   MdCoffeeMaker,
-//   MdSell,
-//   MdKeyboardReturn,
-//   MdOutlinePayments,
-//   MdPeopleAlt,
-// } from "react-icons/md";
-// import { GoPackage, GoReport } from "react-icons/go";
-// import {
-//   BiPurchaseTagAlt,
-//   BiPackage,
-//   BiListPlus,
-//   BiCoinStack,
-// } from "react-icons/bi";
-// import { TbReportMoney } from "react-icons/tb";
-// import { IoIosPeople } from "react-icons/io";
-// import { ImUserCheck } from "react-icons/im";
-
-import { FaHome, FaEnvelope, FaImage, FaGlobe } from "react-icons/fa";
+import { FaHome, FaEnvelope, FaUsers, FaImage, FaGlobe } from "react-icons/fa";
 
 export const dashboardLinks = [
   {
@@ -40,13 +14,19 @@ export const dashboardLinks = [
     icon: <FaEnvelope />,
   },
   {
-    id: 1,
+    id: 3,
+    name: "Users",
+    link: "/users",
+    icon: <FaUsers />,
+  },
+  {
+    id: 4,
     name: "ID Card",
     link: "/id-card",
     icon: <FaImage />,
   },
   {
-    id: 1,
+    id: 5,
     name: "Link",
     link: "/link",
     icon: <FaGlobe />,

@@ -115,7 +115,7 @@ function Table({ columnsHeading, usersData }) {
   // console.log(pageIndex + 1);
 
   return (
-    <div className="flex flex-col items-stretch  px-7 py-10 bg-white rounded shadow">
+    <div className="flex flex-col items-stretch  px-7 py-10">
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()} className="table-auto text-xs lg:text-base">
         <thead className="bg-custom-blue3">

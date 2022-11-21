@@ -6,9 +6,19 @@ import { MdSchool } from "react-icons/md";
 // import SubMenu from "./SubMenu";
 import Menu from "./Menu";
 import { dashboardLinks } from "./navlinks/dashboardLinks";
+import { useSession } from "next-auth/react";
 
 function Sidebar({ showMenu, setShowMenu, name }) {
+  // const [role, setRole] = useState("root");
   const router = useRouter();
+
+  const { data } = useSession();
+
+  const role = data?.user?.admin;
+
+  // console.log("usersession", data);
+
+  // const username = data?.user?.username;
 
   const [active, setActive] = useState("");
 
@@ -19,6 +29,16 @@ function Sidebar({ showMenu, setShowMenu, name }) {
     }
     return "text-custom-blue2 hover:text-white hover:bg-custom-blue5";
   };
+
+  const filteredLinks = () => {
+    if (!role) {
+      return dashboardLinks.filter((item) => item.name !== "Users");
+    } else {
+      return dashboardLinks;
+    }
+  };
+
+  const navLinks = filteredLinks();
 
   return (
     <div
@@ -31,34 +51,33 @@ function Sidebar({ showMenu, setShowMenu, name }) {
         </div>
 
         <div className="mt-3 mx-3 space-y-5">
-          {dashboardLinks &&
-            dashboardLinks.map((navLink, i) => (
-              <div key={i} className="">
-                <Link href={navLink.link} passHref>
-                  <div
-                    key={i}
-                    className={`px-3 py-3 flex justify-between items-center font-semibold transition duration-300 rounded-sm ${activeClass(
-                      navLink.link
-                    )}`}
-                    // onClick={() => toggle(navLink.name)}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-[15px]">{navLink.icon}</span>
+          {navLinks.map((navLink, i) => (
+            <div key={i} className="">
+              <Link href={navLink.link} passHref>
+                <div
+                  key={i}
+                  className={`px-3 py-3 flex justify-between items-center font-semibold transition duration-300 rounded-sm ${activeClass(
+                    navLink.link
+                  )}`}
+                  // onClick={() => toggle(navLink.name)}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-[15px]">{navLink.icon}</span>
 
-                      <p className="text-[13px]">{navLink.name}</p>
-                    </div>
+                    <p className="text-[13px]">{navLink.name}</p>
                   </div>
-                </Link>
-              </div>
-              // <Menu
-              //   key={i}
-              //   showMenu={showMenu}
-              //   setShowMenu={setShowMenu}
-              //   active={active}
-              //   setActive={setActive}
-              //   navLink={navLink}
-              // />
-            ))}
+                </div>
+              </Link>
+            </div>
+            // <Menu
+            //   key={i}
+            //   showMenu={showMenu}
+            //   setShowMenu={setShowMenu}
+            //   active={active}
+            //   setActive={setActive}
+            //   navLink={navLink}
+            // />
+          ))}
         </div>
       </div>
     </div>

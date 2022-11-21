@@ -7,7 +7,7 @@ function usePostData(path) {
   const { data } = useSession();
   const { token, id } = data ? data.user : "";
 
-  const url = `${API_URL}${path}/${id}`;
+  const url = `${API_URL}${path}`;
 
   // useEffect(() => {
   //   console.log(`${API_URL}${path}/${id}`);
@@ -26,7 +26,7 @@ function usePostData(path) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
