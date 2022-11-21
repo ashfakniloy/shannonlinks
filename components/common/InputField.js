@@ -81,3 +81,14 @@ export const PasswordField = ({ label, ...props }) => {
     // </div>
   );
 };
+
+export const CheckboxField = ({ label, ...props }) => {
+  return (
+    <div className="">
+      <label className="">
+        <Field type="checkbox" {...props} className="mr-2" />
+        {label}
+      </label>
+    </div>
+  );
+};

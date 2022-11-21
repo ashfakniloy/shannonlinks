@@ -27,11 +27,11 @@ function usePostData(path) {
 
     if (res.ok) {
       console.log("success", data);
-      toast.success("Submitted Successfully");
+      toast.success(data.success);
       // formik.resetForm();
     } else {
       console.log("error", data);
-      toast.error("Something Went Wrong");
+      toast.error(data.error);
     }
   };
 
