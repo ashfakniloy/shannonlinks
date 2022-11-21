@@ -9,14 +9,6 @@ function usePostData(path) {
 
   const url = `${API_URL}${path}`;
 
-  // useEffect(() => {
-  //   console.log(`${API_URL}${path}/${id}`);
-  // }, [data]);
-
-  // console.log(`${API_URL}${path}/${id}`);
-
-  // const url = `https://boiling-dusk-89135.herokuapp.com/v1/post/add/free/${data?.id}`;
-
   const postData = async (values, formik) => {
     // console.log(values);
     // return;
