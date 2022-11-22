@@ -15,8 +15,8 @@ export const dashboardLinks = [
   },
   {
     id: 3,
-    name: "Users",
-    link: "/users",
+    name: "Posters",
+    link: "/posters",
     icon: <FaUsers />,
   },
   {

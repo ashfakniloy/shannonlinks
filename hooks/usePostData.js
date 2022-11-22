@@ -9,6 +9,8 @@ function usePostData(path) {
 
   const url = `${API_URL}${path}`;
 
+  // console.log(url);
+
   const postData = async (values, formik) => {
     // console.log(values);
     // return;
@@ -27,7 +29,7 @@ function usePostData(path) {
 
     if (res.ok) {
       console.log("success", data);
-      toast.success(data.success);
+      toast.success("Submitted Succcessfully");
       // formik.resetForm();
     } else {
       console.log("error", data);

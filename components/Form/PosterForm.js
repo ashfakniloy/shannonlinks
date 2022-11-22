@@ -3,25 +3,29 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useSession } from "next-auth/react";
 import usePostData from "../../hooks/usePostData";
 import { CheckboxField, TextField } from "../common/InputField";
+import useGetData from "../../hooks/useGetData";
 
-function UserForm() {
-  const { data } = useSession();
+function PosterForm({ id }) {
+  // const { data: session } = useSession();
+  // const { id, username, admin, adminId } = session ? session.user : "";
 
-  console.log("form", data);
+  // console.log("form", data);
 
-  const id = data?.user?.id;
+  // const id = data?.user?.id;
+
+  // const adminId = data?.user?.adminId;
 
   const initialvalues = {
     username: "",
     password: "",
-    user_id: "",
+    posterId: "",
     links: [],
   };
 
   const validate = Yup.object({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
-    user_id: Yup.string()
+    posterId: Yup.string()
       .required("User Id is required")
       .max(3, "Not More than 3 characters"),
     links: Yup.array().min(1, "Atleast one site is required"),
@@ -29,13 +33,19 @@ function UserForm() {
 
   const { postData } = usePostData("/admin/add");
 
+  const { fetchedData } = useGetData(`/link/get/${id}`);
+
+  console.log("links", fetchedData?.users);
+
+  const links = fetchedData?.users;
+
   const handleSubmit = (values, formik) => {
-    const { username, password, user_id, links } = values;
+    const { username, password, posterId, links } = values;
     const submitvalues = {
       id: id,
       username: username,
       password: password,
-      // user_id: user_id,
+      posterId: posterId,
       links: links,
     };
     // console.log(submitvalues);
@@ -52,40 +62,48 @@ function UserForm() {
       >
         {(formik) => (
           <Form>
-            <h1 className="text-lg font-semibold ">Add New User</h1>
+            <h1 className="text-lg font-semibold ">Add New Poster</h1>
             <div className="pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
               <TextField label="Username *" name="username" type="text" />
               <TextField label="Password *" name="password" type="text" />
               <TextField
                 label="User Id (max 3 characters) *"
-                name="user_id"
+                name="posterId"
                 type="text"
                 maxLength={3}
               />
               <div className="col-span-2">
                 <h4 className="">Sites *</h4>
-                {formik.values.user_id ? (
+                {formik.values.posterId ? (
                   <div className="relative mt-2 grid grid-cols-2 gap-2">
-                    <CheckboxField
-                      label={`https://www.megapersonals.com/001/${formik.values.user_id}`}
+                    {links?.map((link, i) => (
+                      <CheckboxField
+                        key={i}
+                        label={`${link}${adminId}/${formik.values.posterId}`}
+                        name="links"
+                        value={`${link}${adminId}/${formik.values.posterId}`}
+                      />
+                    ))}
+                    {/* <CheckboxField
+                      label={`https://www.megapersonals.com/${adminId}/${formik.values.posterId}`}
                       name="links"
-                      value={`https://www.megapersonals.com/001/${formik.values.user_id}`}
+                      value={`https://www.megapersonals.com/${adminId}/${formik.values.posterId}`}
                     />
                     <CheckboxField
-                      label={`https://www.tryst.com/001/${formik.values.user_id}`}
+                      label={`https://www.tryst.com/${adminId}/${formik.values.posterId}`}
                       name="links"
-                      value={`https://www.tryst.com/001/${formik.values.user_id}`}
+                      value={`https://www.tryst.com/${adminId}/${formik.values.posterId}`}
                     />
                     <CheckboxField
-                      label={`https://www.skipthegames.com/001/${formik.values.user_id}`}
+                      label={`https://www.skipthegames.com/${adminId}/${formik.values.posterId}`}
                       name="links"
-                      value={`https://www.skipthegames.com/001/${formik.values.user_id}`}
+                      value={`https://www.skipthegames.com/${adminId}/${formik.values.posterId}`}
                     />
                     <CheckboxField
-                      label={`https://www.privatedelights.com/001/${formik.values.user_id}`}
+                      label={`https://www.privatedelights.com/${adminId}/${formik.values.posterId}`}
                       name="links"
-                      value={`https://www.privatedelights.com/001/${formik.values.user_id}`}
-                    />
+                      value={`https://www.privatedelights.com/${adminId}/${formik.values.posterId}`}
+                    /> */}
                     <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
                       <ErrorMessage name="links" />
                     </p>
@@ -111,4 +129,4 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+export default PosterForm;

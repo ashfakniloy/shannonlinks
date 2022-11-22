@@ -1,16 +1,18 @@
-// import Cookies from "js-cookie";
-import { useSession } from "next-auth/react";
-import useSWR from "swr";
-import { API_URL } from "../config";
 import Cookies from "js-cookie";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 // import { useQuery } from "react-query";
 // import { API_URL, token, id, identity_id } from "../../config";
+import { API_URL } from "../config";
 
 function useGetData(route) {
-  const { data } = useSession();
-  const { token, id } = data ? data.user : "";
+  // const { data } = useSession();
+  // const { token, id, identity_id } = data ? data.user : "";
 
   // console.log("access data is", data);
+
+  const id = Cookies.get("id");
 
   //with react-query
   // const url = `${API_URL}/${route}/${id}/${identity_id ? identity_id : ""}`;
@@ -42,34 +44,45 @@ function useGetData(route) {
   //   // error: error.data,
   // };
 
-  const cookieId = Cookies.get("id");
-
   //with swr
   const fetcher = async (url) => {
     const res = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
       },
     });
     const fetchedData = await res.json();
 
-    // console.log("fetched", fetchedData);
+    console.log("fetched", fetchedData);
     return fetchedData;
   };
 
-  // const url = `${API_URL}${route}/${cookieId}`;
-  const url = `${API_URL}${route}/${id}`;
-  // const url = `${API_URL}${route}/0388b9b5-6d20-4de9-9411-660cfb5b6eb7`;
-  // console.log(url);
-
-  const { data: fetchedData, error } = useSWR(url, fetcher);
+  const url = `${API_URL}${route}`;
+  // console.log("test", url);
+  const { data: fetchedData, error } = useSWR(`${API_URL}${route}`, fetcher);
 
   return {
     fetchedData: fetchedData ? fetchedData : "",
     isLoading: !error && !fetchedData,
     isError: error,
   };
+
+  // with useEffect
+  // const [fetchedData, setFetechedData] = useState("");
+
+  // useEffect(() => {
+  //   const fetcher = async () => {
+  //     const url = `${API_URL}${route}/${id}`;
+  //     const res = await fetch(url);
+  //     const data = await res.json();
+
+  //     if(res.ok) {
+
+  //       console.log();
+  //     }
+  //   };
+  // });
 }
 
 export default useGetData;

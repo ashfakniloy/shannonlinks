@@ -14,7 +14,7 @@ function Sidebar({ showMenu, setShowMenu, name }) {
 
   const { data } = useSession();
 
-  const role = data?.user?.admin;
+  const admin = data?.user?.admin;
 
   // console.log("usersession", data);
 
@@ -31,8 +31,8 @@ function Sidebar({ showMenu, setShowMenu, name }) {
   };
 
   const filteredLinks = () => {
-    if (!role) {
-      return dashboardLinks.filter((item) => item.name !== "Users");
+    if (admin === false) {
+      return dashboardLinks.filter((item) => item.name !== "Posters");
     } else {
       return dashboardLinks;
     }

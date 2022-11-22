@@ -1,4 +1,4 @@
-export const usersColumn = [
+export const postersColumn = [
   {
     Header: "Username",
     accessor: "username",
@@ -8,7 +8,7 @@ export const usersColumn = [
     accessor: "password",
   },
   {
-    Header: "Link ID",
-    accessor: "linkId",
+    Header: "Poster ID",
+    accessor: "posterId",
   },
 ];
