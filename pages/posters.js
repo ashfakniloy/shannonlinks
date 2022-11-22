@@ -5,7 +5,7 @@ import PosterForm from "../components/Form/PosterForm";
 import Table from "../components/Table";
 import { postersColumn } from "../components/Table/columns/postersColumn";
 import Tabs from "../components/Tabs";
-import { API_URL, id } from "../config";
+import { API_URL, id, adminId } from "../config";
 import useGetData from "../hooks/useGetData";
 
 // const userData = [
@@ -29,7 +29,7 @@ function UsersPage() {
   const table = userData && (
     <Table columnsHeading={postersColumn} usersData={userData} />
   );
-  const form = <PosterForm id={id} />;
+  const form = <PosterForm id={id} adminId={adminId} />;
 
   const tabsData = [
     {

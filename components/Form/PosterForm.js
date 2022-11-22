@@ -5,7 +5,7 @@ import usePostData from "../../hooks/usePostData";
 import { CheckboxField, TextField } from "../common/InputField";
 import useGetData from "../../hooks/useGetData";
 
-function PosterForm({ id }) {
+function PosterForm({ id, adminId }) {
   // const { data: session } = useSession();
   // const { id, username, admin, adminId } = session ? session.user : "";
 
