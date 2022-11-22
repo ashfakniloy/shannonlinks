@@ -3,13 +3,13 @@ import React from "react";
 import { FaEnvelope } from "react-icons/fa";
 import Table from "../components/Table";
 import { infoColumn } from "../components/Table/columns/infoColumn";
-import { API_URL, id, username, admin } from "../config";
+// import { API_URL, id, username, admin } from "../config";
 import useGetData from "../hooks/useGetData";
 // import { infoData } from "../data/infoData";
 
 function InformationPage() {
-  // const { data: session } = useSession();
-  // const { id, username, admin, adminId } = session ? session.user : "";
+  const { data: session } = useSession();
+  const { id, username, admin, adminId } = session ? session.user : "";
 
   // console.log(id);
 

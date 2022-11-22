@@ -5,7 +5,7 @@ import PosterForm from "../components/Form/PosterForm";
 import Table from "../components/Table";
 import { postersColumn } from "../components/Table/columns/postersColumn";
 import Tabs from "../components/Tabs";
-import { API_URL, id, adminId } from "../config";
+// import { API_URL, id, adminId } from "../config";
 import useGetData from "../hooks/useGetData";
 
 // const userData = [
@@ -18,7 +18,8 @@ import useGetData from "../hooks/useGetData";
 
 function UsersPage() {
   // const { data: session } = useSession({ required: true });
-  // const { id, username, admin, adminId } = session ? session.user : "";
+  const { data: session } = useSession();
+  const { id, username, admin, adminId } = session ? session.user : "";
 
   const { fetchedData } = useGetData(`/all/poster/${id}`);
   // console.log("posters", fetchedData?.users);

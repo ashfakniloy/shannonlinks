@@ -71,18 +71,25 @@ function useGetData(route) {
   // with useEffect
   // const [fetchedData, setFetechedData] = useState("");
 
+  // const url = `${API_URL}${route}`;
+
   // useEffect(() => {
   //   const fetcher = async () => {
-  //     const url = `${API_URL}${route}/${id}`;
   //     const res = await fetch(url);
   //     const data = await res.json();
 
-  //     if(res.ok) {
-
-  //       console.log();
+  //     if (res.ok) {
+  //       setFetechedData(data);
+  //       console.log("success", data);
+  //     } else {
+  //       console.log("error", data);
   //     }
   //   };
-  // });
+
+  //   fetcher();
+  // }, [route]);
+
+  // return { fetchedData };
 }
 
 export default useGetData;

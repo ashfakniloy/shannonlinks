@@ -5,9 +5,9 @@ import cookie from "cookie";
 
 const nextAuthOptions = (req, res) => {
   return {
-    // session: {
-    //   strategy: "jwt",
-    // },
+    session: {
+      strategy: "jwt",
+    },
     providers: [
       CredentialsProvider({
         name: "Credentials",
@@ -31,7 +31,7 @@ const nextAuthOptions = (req, res) => {
 
           const user = await response.json();
 
-          console.log("auth", user);
+          // console.log("auth", user);
 
           // console.log("main", url);
 

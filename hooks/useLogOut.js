@@ -13,7 +13,10 @@ function useLogOut() {
       // redirect: false,
     });
 
-    // Cookies.remove("id");
+    Cookies.remove("id");
+    Cookies.remove("adminId");
+    Cookies.remove("username");
+    Cookies.remove("admin");
     // router.push("/user-signin");
   };
 
