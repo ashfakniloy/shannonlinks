@@ -5,6 +5,7 @@ import usePostData from "../../hooks/usePostData";
 import { CheckboxField, TextField } from "../common/InputField";
 import useGetData from "../../hooks/useGetData";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 function EditPosterForm() {
   const { data: session } = useSession();
@@ -49,6 +50,8 @@ function EditPosterForm() {
     // yourLinks: Yup.array().min(1, "Atleast one site is required"),
   });
 
+  const [linksError, setLinksError] = useState(false);
+
   const handleSubmit = (values, formik) => {
     const { username, password, yourLinks, availableLinks } = values;
     const submitvalues = {
@@ -60,7 +63,14 @@ function EditPosterForm() {
       // yourLinks: yourLinks,
       // availableLinks: availableLinks,
     };
-    console.log(submitvalues);
+
+    if (submitvalues.links.length === 0) {
+      setLinksError(true);
+    } else {
+      setLinksError(false);
+      console.log(submitvalues);
+    }
+
     // postData(submitvalues);
   };
 
@@ -70,7 +80,6 @@ function EditPosterForm() {
 
   const linksAvailable = allLinks?.filter((link) => {
     const newLink = `${link}${adminId}/${posterId}`;
-    console.log("newLink", newLink);
     return !yourLinks?.includes(newLink);
   });
 
@@ -87,7 +96,7 @@ function EditPosterForm() {
         {(formik) => (
           <Form>
             <h1 className="text-lg font-semibold ">Edit Poster</h1>
-            <div className="pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
+            <div className="relative pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
               <TextField label="Username *" name="username" type="text" />
               <TextField label="Password *" name="password" type="text" />
               {/* <TextField
@@ -144,12 +153,20 @@ function EditPosterForm() {
                         />
                       );
                     })} */}
-                    <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+
+                    {/* <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
                       <ErrorMessage name="links" />
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
+              {linksError ? (
+                <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                  Atleast one site is required
+                </p>
+              ) : (
+                ""
+              )}
             </div>
             <div className="mt-10 flex justify-start">
               <button
