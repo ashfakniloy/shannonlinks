@@ -86,7 +86,7 @@ function EditPosterForm() {
                 maxLength={3}
               /> */}
               <div className="col-start-1">
-                <h4 className="">Your Sites *</h4>
+                <h4 className="">Poster&apos;s Sites *</h4>
                 <div className="flex">
                   <div className="relative mt-2 gap-y-2 ">
                     {yourLinks?.map((link, i) => (
@@ -106,7 +106,7 @@ function EditPosterForm() {
               </div>
 
               <div className="">
-                <h4 className="">Available Sites *</h4>
+                <h4 className="">Available Sites for Poster*</h4>
                 <div className="flex">
                   <div className="relative mt-2 gap-y-2 ">
                     {allLinks?.map((link, i) => (
