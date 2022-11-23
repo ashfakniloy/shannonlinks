@@ -54,27 +54,29 @@ function PosterDetailsPage() {
 
       <div className="mt-7 flex gap-8">
         <div className="">
-          <div className="text-base text-custom-gray3 font-semibold min-w-[350px] bg-white p-8 rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-5 text-black">Details:</h2>
-            <h4 className="grid grid-cols-2">
-              <span>Username:</span> <span>Name</span>
-            </h4>
-            <h4 className="grid grid-cols-2">
-              <span>Password:</span> <span>password</span>
-            </h4>
-            <h4 className="grid grid-cols-2">
-              <span>Poster ID:</span> <span>posterid</span>
-            </h4>
+          <div className="text-sm text-custom-gray3 font-semibold min-w-[350px] bg-white p-8 rounded shadow-md">
+            <h4 className="text-xl text-black">Informations:</h4>
+            <div className="mt-3 space-y-3">
+              <p className="grid grid-cols-2">
+                <span>Username:</span> <span>Name</span>
+              </p>
+              <p className="grid grid-cols-2">
+                <span>Password:</span> <span>password</span>
+              </p>
+              <p className="grid grid-cols-2">
+                <span>Poster ID:</span> <span>posterid</span>
+              </p>
+            </div>
 
-            <div className="mt-5">
-              <h4 className="text-black">Links:</h4>
-              <div className="">
-                <h5 className="">https://www.Link.com/001/009</h5>
-                <h5 className="">https://www.Link.com/001/009</h5>
-                <h5 className="">https://www.Link.com/001/009</h5>
-                <h5 className="">https://www.Link.com/001/009</h5>
-                <h5 className="">https://www.Link.com/001/009</h5>
-                <h5 className="">https://www.Link.com/001/009</h5>
+            <div className="mt-7">
+              <h4 className="text-xl text-black">Links:</h4>
+              <div className="mt-3 space-y-3">
+                <p className="">https://www.Link.com/001/009</p>
+                <p className="">https://www.Link.com/001/009</p>
+                <p className="">https://www.Link.com/001/009</p>
+                <p className="">https://www.Link.com/001/009</p>
+                <p className="">https://www.Link.com/001/009</p>
+                <p className="">https://www.Link.com/001/009</p>
               </div>
             </div>
           </div>
