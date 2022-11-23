@@ -32,11 +32,11 @@ function EditPosterForm() {
   const allLinks = fetchedLinks?.users;
 
   const initialvalues = {
-    username: username,
-    password: password,
+    username: username ? username : "",
+    password: password ? password : "",
     // posterId: posterId,
     // links: [],
-    yourLinks: yourLinks,
+    yourLinks: yourLinks ? yourLinks : "",
     availableLinks: [],
   };
 
@@ -63,6 +63,18 @@ function EditPosterForm() {
     console.log(submitvalues);
     // postData(submitvalues);
   };
+
+  // const newLink = `${link}${adminId}/${posterId}`
+
+  // const output = allLinks.filter((obj) => array1.indexOf(obj) !== -1);
+
+  const linksAvailable = allLinks?.filter((link) => {
+    const newLink = `${link}${adminId}/${posterId}`;
+    console.log("newLink", newLink);
+    return !yourLinks?.includes(newLink);
+  });
+
+  // console.log("available", linksAvailable());
 
   return (
     <div className="mt-7">
@@ -108,14 +120,30 @@ function EditPosterForm() {
                 <h4 className="">Available Sites for Poster*</h4>
                 <div className="flex">
                   <div className="relative mt-2 gap-y-2 ">
-                    {allLinks?.map((link, i) => (
+                    {linksAvailable?.map((link, i) => (
                       <CheckboxField
                         key={i}
-                        label={`${link}/${adminId}/${posterId}`}
+                        label={`${link}${adminId}/${posterId}`}
                         name="availableLinks"
-                        value={`${link}/${adminId}/${posterId}`}
+                        value={`${link}${adminId}/${posterId}`}
                       />
                     ))}
+
+                    {/* {allLinks?.map((link, i) => {
+                      const newLink = `${link}${adminId}/${posterId}`;
+                      const filteredLinks = yourLinks?.filter(
+                        (yourLink) => newLink === yourLink
+                      );
+                      
+                      return (
+                        <CheckboxField
+                          key={i}
+                          label={filteredLinks}
+                          name="availableLinks"
+                          value={filteredLinks}
+                        />
+                      );
+                    })} */}
                     <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
                       <ErrorMessage name="links" />
                     </p>
