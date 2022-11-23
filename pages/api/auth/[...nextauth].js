@@ -37,43 +37,43 @@ const nextAuthOptions = (req, res) => {
 
           // if (response.ok && user) {
           if (response.ok) {
-            res.setHeader("Set-Cookie", [
-              // cookie.serialize("token", user.token, {
-              //   httpOnly: true,
-              //   secure: process.env.NODE_ENV !== "development",
-              //   maxAge: 30 * 24 * 60 * 60, // 30 days
-              //   sameSite: "strict",
-              //   path: "/",
-              // }),
-              cookie.serialize("id", user.id, {
-                // httpOnly: true,
-                // secure: process.env.NODE_ENV !== "development",
-                maxAge: 30 * 24 * 60 * 60, // 30 days
-                sameSite: "strict",
-                path: "/",
-              }),
-              cookie.serialize("adminId", user.adminId, {
-                // httpOnly: true,
-                // secure: process.env.NODE_ENV !== "development",
-                maxAge: 30 * 24 * 60 * 60, // 30 days
-                sameSite: "strict",
-                path: "/",
-              }),
-              cookie.serialize("username", user.username, {
-                // httpOnly: true,
-                // secure: process.env.NODE_ENV !== "development",
-                maxAge: 30 * 24 * 60 * 60, // 30 days
-                sameSite: "strict",
-                path: "/",
-              }),
-              cookie.serialize("admin", user.admin, {
-                // httpOnly: true,
-                // secure: process.env.NODE_ENV !== "development",
-                maxAge: 30 * 24 * 60 * 60, // 30 days
-                sameSite: "strict",
-                path: "/",
-              }),
-            ]);
+            // res.setHeader("Set-Cookie", [
+            //   // cookie.serialize("token", user.token, {
+            //   //   httpOnly: true,
+            //   //   secure: process.env.NODE_ENV !== "development",
+            //   //   maxAge: 30 * 24 * 60 * 60, // 30 days
+            //   //   sameSite: "strict",
+            //   //   path: "/",
+            //   // }),
+            //   cookie.serialize("id", user.id, {
+            //     // httpOnly: true,
+            //     // secure: process.env.NODE_ENV !== "development",
+            //     maxAge: 30 * 24 * 60 * 60, // 30 days
+            //     sameSite: "strict",
+            //     path: "/",
+            //   }),
+            //   cookie.serialize("adminId", user.adminId, {
+            //     // httpOnly: true,
+            //     // secure: process.env.NODE_ENV !== "development",
+            //     maxAge: 30 * 24 * 60 * 60, // 30 days
+            //     sameSite: "strict",
+            //     path: "/",
+            //   }),
+            //   cookie.serialize("username", user.username, {
+            //     // httpOnly: true,
+            //     // secure: process.env.NODE_ENV !== "development",
+            //     maxAge: 30 * 24 * 60 * 60, // 30 days
+            //     sameSite: "strict",
+            //     path: "/",
+            //   }),
+            //   cookie.serialize("admin", user.admin, {
+            //     // httpOnly: true,
+            //     // secure: process.env.NODE_ENV !== "development",
+            //     maxAge: 30 * 24 * 60 * 60, // 30 days
+            //     sameSite: "strict",
+            //     path: "/",
+            //   }),
+            // ]);
             return user;
           } else {
             // console.log("error", user);

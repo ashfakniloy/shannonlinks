@@ -115,7 +115,8 @@ function Table({ columnsHeading, usersData }) {
   // console.log(pageIndex + 1);
 
   return (
-    <div className="flex flex-col items-stretch  px-7 py-10">
+    // <div className="flex flex-col items-stretch  px-7 py-10">
+    <div className=" px-7 py-10 flex flex-col">
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()} className="table-auto text-xs lg:text-base">
         <thead className="bg-custom-blue3">
@@ -124,24 +125,28 @@ function Table({ columnsHeading, usersData }) {
               {headerGroup.headers.map((column, i) => (
                 <th
                   key={i}
-                  className="px-4 py-3 text-sm border-collapse border border-gray-100 capitalize"
+                  {...column.getHeaderProps({ style: { width: column.width } })}
+                  // style={{ width: column.width }}
+                  className={`px-4 py-3 text-sm border-collapse border border-gray-100 capitalize`}
                 >
-                  {column.render("Header").split("_").join(" ")}
+                  {column.render("Header")}
                   <span
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     className="inline-block px-2"
                   >
-                    <div className="text-xs">
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <FaSortDown />
+                    {!column.disableSortBy && (
+                      <div className="text-xs">
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <FaSortDown />
+                          ) : (
+                            <FaSortUp />
+                          )
                         ) : (
-                          <FaSortUp />
-                        )
-                      ) : (
-                        <FaSort />
-                      )}
-                    </div>
+                          <FaSort />
+                        )}
+                      </div>
+                    )}
                   </span>
                   {/* <div className="mt-2 text-black font-normal">
                       {column.canFilter ? column.render("Filter") : null}

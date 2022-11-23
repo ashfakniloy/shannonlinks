@@ -27,6 +27,9 @@ function Sidebar({ showMenu, setShowMenu, name }) {
     if (router.pathname === path) {
       return "bg-custom-blue5 text-white";
     }
+    // if (router.pathname.split("/").includes(path)) {
+    //   return "bg-custom-blue5 text-white";
+    // }
     return "text-custom-blue2 hover:text-white hover:bg-custom-blue5";
   };
 

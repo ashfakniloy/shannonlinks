@@ -1,12 +1,12 @@
 import { getSession, useSession } from "next-auth/react";
 import { useState } from "react";
 import { FaUsers } from "react-icons/fa";
-import PosterForm from "../components/Form/PosterForm";
-import Table from "../components/Table";
-import { postersColumn } from "../components/Table/columns/postersColumn";
-import Tabs from "../components/Tabs";
-// import { API_URL, id, adminId } from "../config";
-import useGetData from "../hooks/useGetData";
+import PosterForm from "../../components/Form/PosterForm";
+import Table from "../../components/Table";
+import { postersColumn } from "../../components/Table/columns/postersColumn";
+import Tabs from "../../components/Tabs";
+// import { API_URL, id, adminId } from "../../config";
+import useGetData from "../../hooks/useGetData";
 
 // const userData = [
 //   { username: "user1", password: "1234", posterId: "001" },
@@ -16,13 +16,13 @@ import useGetData from "../hooks/useGetData";
 //   { username: "user5", password: "1234", posterId: "005" },
 // ];
 
-function UsersPage() {
+function Posterspage() {
   // const { data: session } = useSession({ required: true });
   const { data: session } = useSession();
   const { id, username, admin, adminId } = session ? session.user : "";
 
   const { fetchedData } = useGetData(`/all/poster/${id}`);
-  // console.log("posters", fetchedData?.users);
+  console.log("postersss", fetchedData);
 
   const userData = fetchedData?.data?.posters;
 
@@ -34,12 +34,12 @@ function UsersPage() {
 
   const tabsData = [
     {
-      label: "Add Poster",
-      content: form,
-    },
-    {
       label: "All Posters",
       content: table,
+    },
+    {
+      label: "Add Poster",
+      content: form,
     },
   ];
 
@@ -79,4 +79,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default UsersPage;
+export default Posterspage;
