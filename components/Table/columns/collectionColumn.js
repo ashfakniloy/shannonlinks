@@ -1,4 +1,4 @@
-export const infoColumn = [
+export const collectionColumn = [
   // {
   //   Header: "serial",
   //   accessor: "serial",

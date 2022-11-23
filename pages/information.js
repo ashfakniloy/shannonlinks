@@ -2,7 +2,7 @@ import { getSession, useSession } from "next-auth/react";
 import React from "react";
 import { FaEnvelope } from "react-icons/fa";
 import Table from "../components/Table";
-import { infoColumn } from "../components/Table/columns/infoColumn";
+import { collectionColumn } from "../components/Table/columns/collectionColumn";
 // import { API_URL, id, username, admin } from "../config";
 import useGetData from "../hooks/useGetData";
 // import { infoData } from "../data/infoData";
