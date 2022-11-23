@@ -35,7 +35,7 @@ function EditPosterForm() {
     username: username,
     password: password,
     // posterId: posterId,
-    links: [],
+    // links: [],
     yourLinks: yourLinks,
     availableLinks: [],
   };
@@ -50,14 +50,13 @@ function EditPosterForm() {
   });
 
   const handleSubmit = (values, formik) => {
-    const { username, password, posterId, links, yourLinks, availableLinks } =
-      values;
+    const { username, password, yourLinks, availableLinks } = values;
     const submitvalues = {
       id: id,
       username: username,
       password: password,
       posterId: posterId,
-      links: [...yourLinks, ...links],
+      links: [...yourLinks, ...availableLinks],
       // yourLinks: yourLinks,
       // availableLinks: availableLinks,
     };
@@ -93,9 +92,9 @@ function EditPosterForm() {
                       <CheckboxField
                         key={i}
                         label={`${link}`}
-                        name="links"
+                        name="yourLinks"
                         value={`${link}`}
-                        checked
+                        // checked
                       />
                     ))}
                     <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
@@ -113,7 +112,7 @@ function EditPosterForm() {
                       <CheckboxField
                         key={i}
                         label={`${link}/${adminId}/${posterId}`}
-                        name="links"
+                        name="availableLinks"
                         value={`${link}/${adminId}/${posterId}`}
                       />
                     ))}
@@ -123,7 +122,6 @@ function EditPosterForm() {
                   </div>
                 </div>
               </div>
-              {/* <TextField label="Link Id *" name="linkId" type="text" /> */}
             </div>
             <div className="mt-10 flex justify-start">
               <button
