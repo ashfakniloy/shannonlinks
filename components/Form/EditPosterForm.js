@@ -62,7 +62,7 @@ function EditPosterForm() {
       >
         {(formik) => (
           <Form>
-            <h1 className="text-lg font-semibold ">Add New Poster</h1>
+            <h1 className="text-lg font-semibold ">Edit Poster</h1>
             <div className="pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
               <TextField label="Username *" name="username" type="text" />
               <TextField label="Password *" name="password" type="text" />
