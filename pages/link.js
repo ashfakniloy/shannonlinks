@@ -1,10 +1,37 @@
+import { useSession } from "next-auth/react";
 import React from "react";
 import { FaGlobe } from "react-icons/fa";
 import Table from "../components/Table";
 import { linkColumn } from "../components/Table/columns/linkColumn";
 import { linkData } from "../data/linkData";
+import useGetData from "../hooks/useGetData";
 
 function LinkPage() {
+  const { data: session } = useSession();
+  const { id, username, admin, adminId } = session ? session.user : "";
+
+  const { fetchedData } = useGetData(`/link/${id}`);
+  console.log("links", fetchedData);
+
+  const allSites = fetchedData?.sites;
+  const activeSites = fetchedData?.data;
+
+  const x = allSites?.map((site) => site.name);
+  const y = activeSites?.map((site) => site);
+
+  const status = () => {
+    const check = x?.map((site) => {
+      if (y.includes(site)) {
+        return "active";
+      } else {
+        return "inactive";
+      }
+    });
+    return check;
+  };
+
+  console.log(status());
+
   return (
     <div className="">
       <div className="flex items-center gap-3">
@@ -14,8 +41,38 @@ function LinkPage() {
         <h1 className="text-2xl font-bold text-custom-gray2">Link</h1>
       </div>
 
-      <div className="mt-7 bg-white rounded shadow">
-        {linkData && <Table columnsHeading={linkColumn} usersData={linkData} />}
+      <div className="mt-7 flex gap-10">
+        <div className="flex-1">
+          <div className="bg-white p-8 rounded shadow-md">
+            <h4 className="text-xl font-semibold">Available Links</h4>
+            <div className="mt-4 divide-y">
+              {allSites?.map((site, i) => (
+                <p
+                  key={i}
+                  className="py-3 text-sm font-semibold text-custom-gray3"
+                >
+                  {site.name}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1">
+          <div className="bg-white p-8 rounded shadow-md">
+            <h4 className="text-xl font-semibold">Your Links</h4>
+            <div className="mt-4 divide-y">
+              {activeSites?.map((site, i) => (
+                <p
+                  key={i}
+                  className="py-3 text-sm font-semibold text-custom-gray3"
+                >
+                  {site}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

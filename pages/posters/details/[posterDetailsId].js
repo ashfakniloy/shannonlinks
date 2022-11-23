@@ -1,7 +1,11 @@
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import React from "react";
 import { FaUser } from "react-icons/fa";
 import Table from "../../../components/Table";
 import { collectionColumn } from "../../../components/Table/columns/collectionColumn";
+import { API_URL } from "../../../config";
+import useGetData from "../../../hooks/useGetData";
 
 const usersData = [
   {
@@ -42,7 +46,22 @@ const usersData = [
   },
 ];
 
-function PosterDetailsPage() {
+function PosterDetailsPage({ data }) {
+  // const { data: session } = useSession();
+  // const { id, username, admin, adminId } = session ? session.user : "";
+  // const {
+  //   query: { posterDetailsId },
+  // } = useRouter();
+
+  // const { fetchedData } = useGetData(`/poster/details/${posterDetailsId}`);
+  // const username = fetchedData?.data?.username;
+  // const password = fetchedData?.data?.password;
+  // const posterId = fetchedData?.data?.posterId;
+  // const links = fetchedData?.data?.links;
+  // console.log("poster details", username);
+
+  const { username, password, posterId, links, details } = data?.data;
+
   return (
     <div className="">
       <div className="flex items-center gap-3">
@@ -58,25 +77,20 @@ function PosterDetailsPage() {
             <h4 className="text-xl text-black">Informations:</h4>
             <div className="mt-3 space-y-3">
               <p className="grid grid-cols-2">
-                <span>Username:</span> <span>Name</span>
+                <span>Username:</span> <span>{username}</span>
               </p>
               <p className="grid grid-cols-2">
-                <span>Password:</span> <span>password</span>
+                <span>Password:</span> <span>{password}</span>
               </p>
               <p className="grid grid-cols-2">
-                <span>Poster ID:</span> <span>posterid</span>
+                <span>Poster ID:</span> <span>{posterId}</span>
               </p>
             </div>
 
             <div className="mt-7">
               <h4 className="text-xl text-black">Links:</h4>
               <div className="mt-3 space-y-3">
-                <p className="">https://www.Link.com/001/009</p>
-                <p className="">https://www.Link.com/001/009</p>
-                <p className="">https://www.Link.com/001/009</p>
-                <p className="">https://www.Link.com/001/009</p>
-                <p className="">https://www.Link.com/001/009</p>
-                <p className="">https://www.Link.com/001/009</p>
+                {links && links.map((link, i) => <p key={i}>{link}</p>)}
               </div>
             </div>
           </div>
@@ -98,6 +112,22 @@ function PosterDetailsPage() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps({ query: { posterDetailsId } }) {
+  const url = `${API_URL}/poster/details/${posterDetailsId}`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  // console.log(data);
+
+  if (res.ok) {
+    return { props: { data } };
+  } else {
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default PosterDetailsPage;

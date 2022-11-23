@@ -4,10 +4,11 @@ import { useSession } from "next-auth/react";
 import usePostData from "../../hooks/usePostData";
 import { CheckboxField, TextField } from "../common/InputField";
 import useGetData from "../../hooks/useGetData";
+import { useRouter } from "next/router";
 
 function EditPosterForm() {
   const { data: session } = useSession();
-  const { id, username, admin, adminId } = session ? session.user : "";
+  const { id, admin, adminId } = session ? session.user : "";
 
   // console.log("form", data);
 
@@ -15,41 +16,53 @@ function EditPosterForm() {
 
   // const adminId = data?.user?.adminId;
 
+  const {
+    query: { posterEditId },
+  } = useRouter();
+
+  const { fetchedData } = useGetData(`/poster/details/${posterEditId}`);
+  const username = fetchedData?.data?.username;
+  const password = fetchedData?.data?.password;
+  const posterId = fetchedData?.data?.posterId;
+  const yourLinks = fetchedData?.data?.links;
+  // console.log("poster details", username);
+
+  const { fetchedData: fetchedLinks } = useGetData(`/link/get/${id}`);
+
+  const allLinks = fetchedLinks?.users;
+
   const initialvalues = {
-    username: "from api",
-    password: "from api",
-    posterId: "from api",
-    links: ["from api", "from api", "from api"],
+    username: username,
+    password: password,
+    // posterId: posterId,
+    links: [],
+    yourLinks: yourLinks,
+    availableLinks: [],
   };
 
   const validate = Yup.object({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
-    posterId: Yup.string()
-      .required("Poster Id is required")
-      .max(3, "Not More than 3 characters"),
-    links: Yup.array().min(1, "Atleast one site is required"),
+    // posterId: Yup.string()
+    //   .required("Poster Id is required")
+    //   .max(3, "Not More than 3 characters"),
+    // yourLinks: Yup.array().min(1, "Atleast one site is required"),
   });
 
-  const { postData } = usePostData("/admin/add");
-
-  const { fetchedData } = useGetData(`/link/get/${id}`);
-
-  console.log("links", fetchedData?.users);
-
-  const links = fetchedData?.users;
-
   const handleSubmit = (values, formik) => {
-    const { username, password, posterId, links } = values;
+    const { username, password, posterId, links, yourLinks, availableLinks } =
+      values;
     const submitvalues = {
       id: id,
       username: username,
       password: password,
       posterId: posterId,
-      links: links,
+      links: [...yourLinks, ...links],
+      // yourLinks: yourLinks,
+      // availableLinks: availableLinks,
     };
-    // console.log(submitvalues);
-    postData(submitvalues);
+    console.log(submitvalues);
+    // postData(submitvalues);
   };
 
   return (
@@ -58,7 +71,7 @@ function EditPosterForm() {
         initialValues={initialvalues}
         validationSchema={validate}
         onSubmit={handleSubmit}
-        // enableReinitialize
+        enableReinitialize
       >
         {(formik) => (
           <Form>
@@ -66,32 +79,48 @@ function EditPosterForm() {
             <div className="pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
               <TextField label="Username *" name="username" type="text" />
               <TextField label="Password *" name="password" type="text" />
-              <TextField
+              {/* <TextField
                 label="Poster Id (max 3 characters) *"
                 name="posterId"
                 type="text"
                 maxLength={3}
-              />
-              <div className="col-span-3">
-                <h4 className="">Sites *</h4>
+              /> */}
+              <div className="col-start-1">
+                <h4 className="">Your Sites *</h4>
                 <div className="flex">
-                  {formik.values.posterId ? (
-                    <div className="relative mt-2 grid grid-cols-2 gap-y-2 gap-x-10">
-                      {links?.map((link, i) => (
-                        <CheckboxField
-                          key={i}
-                          label={`${link}${adminId}/${formik.values.posterId}`}
-                          name="links"
-                          value={`${link}${adminId}/${formik.values.posterId}`}
-                        />
-                      ))}
-                      <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
-                        <ErrorMessage name="links" />
-                      </p>
-                    </div>
-                  ) : (
-                    <p className="mt-2">Enter User ID First</p>
-                  )}
+                  <div className="relative mt-2 gap-y-2 ">
+                    {yourLinks?.map((link, i) => (
+                      <CheckboxField
+                        key={i}
+                        label={`${link}`}
+                        name="links"
+                        value={`${link}`}
+                        checked
+                      />
+                    ))}
+                    <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                      <ErrorMessage name="links" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="">
+                <h4 className="">Available Sites *</h4>
+                <div className="flex">
+                  <div className="relative mt-2 gap-y-2 ">
+                    {allLinks?.map((link, i) => (
+                      <CheckboxField
+                        key={i}
+                        label={`${link}/${adminId}/${posterId}`}
+                        name="links"
+                        value={`${link}/${adminId}/${posterId}`}
+                      />
+                    ))}
+                    <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                      <ErrorMessage name="links" />
+                    </p>
+                  </div>
                 </div>
               </div>
               {/* <TextField label="Link Id *" name="linkId" type="text" /> */}

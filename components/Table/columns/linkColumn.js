@@ -1,14 +1,14 @@
 export const linkColumn = [
   {
     Header: "Website",
-    accessor: "website",
+    accessor: "name",
   },
-  {
-    Header: "Website Name",
-    accessor: "website_name",
-  },
-  {
-    Header: "Status",
-    accessor: "status",
-  },
+  // {
+  //   Header: "Website Name",
+  //   accessor: "website_name",
+  // },
+  // {
+  //   Header: "Status",
+  //   accessor: ["status", ],
+  // },
 ];
