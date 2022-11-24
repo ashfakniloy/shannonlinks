@@ -22,7 +22,9 @@ function Posterspage() {
   const { id, username, admin, adminId } = session ? session.user : "";
 
   const { fetchedData } = useGetData(`/all/poster/${id}`);
-  console.log("postersss", fetchedData);
+  // console.log("postersss", fetchedData);
+
+  console.log("session", session);
 
   const userData = fetchedData?.data?.posters;
 
@@ -59,24 +61,28 @@ function Posterspage() {
   );
 }
 
-export async function getServerSideProps(context) {
-  const {
-    user: { username, id, admin },
-  } = await getSession(context);
+// export async function getServerSideProps(context) {
+//   // const {
+//   //   user: { username, id, admin },
+//   // } = await getSession(context);
 
-  // const url = `${API_URL}/linl/all/${id}`;
-  //      const res = await fetch(url);
-  //      const data = await res.json();
+//   // const session = getSession(context);
 
-  if (!admin) {
-    return {
-      notFound: true,
-    };
-  }
+//   // console.log("server", session);
 
-  return {
-    props: {},
-  };
-}
+//   // const url = `${API_URL}/linl/all/${id}`;
+//   //      const res = await fetch(url);
+//   //      const data = await res.json();
+
+//   // if (!admin) {
+//   //   return {
+//   //     notFound: true,
+//   //   };
+//   // }
+
+//   return {
+//     props: {},
+//   };
+// }
 
 export default Posterspage;

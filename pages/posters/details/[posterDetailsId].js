@@ -62,6 +62,8 @@ function PosterDetailsPage({ data }) {
 
   const { username, password, posterId, links, details } = data?.data;
 
+  console.log("dd", details);
+
   return (
     <div className="">
       <div className="flex items-center gap-3">
@@ -99,12 +101,9 @@ function PosterDetailsPage({ data }) {
         <div className=" flex-1">
           <div className="bg-white p-8 rounded shadow-md">
             <h2 className="text-xl font-semibold mb-5">Collections:</h2>
-            <div className="">
-              {usersData && (
-                <Table
-                  columnsHeading={collectionColumn}
-                  usersData={usersData}
-                />
+            <div className="-mt-10">
+              {details && (
+                <Table columnsHeading={collectionColumn} usersData={details} />
               )}
             </div>
           </div>

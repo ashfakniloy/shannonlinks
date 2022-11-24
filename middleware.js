@@ -24,6 +24,13 @@ export default async function middleware(req) {
     return NextResponse.redirect(`${origin}/sign-in`);
   }
 
+  if (user && pathname.includes("/posters")) {
+    if (!role) {
+      return NextResponse.redirect(`${origin}/404`);
+    }
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 
   // const redirectPage = () => NextResponse.redirect(`${origin}/user-signin`);
@@ -40,5 +47,12 @@ export default async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/", "/information", "/users", "/id-card", "/link"],
+  matcher: [
+    "/",
+    "/information",
+    "/users",
+    "/id-card",
+    "/link",
+    "/posters/:path*",
+  ],
 };
