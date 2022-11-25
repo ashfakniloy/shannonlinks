@@ -80,9 +80,9 @@ function PosterForm({ id, adminId }) {
                       {links?.map((link, i) => (
                         <CheckboxField
                           key={i}
-                          label={`${link}${adminId}/${formik.values.posterId}`}
+                          label={`${link}/${adminId}/${formik.values.posterId}`}
                           name="links"
-                          value={`${link}${adminId}/${formik.values.posterId}`}
+                          value={`${link}/${adminId}/${formik.values.posterId}`}
                         />
                       ))}
                       <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">

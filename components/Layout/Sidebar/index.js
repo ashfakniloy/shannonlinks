@@ -8,13 +8,9 @@ import Menu from "./Menu";
 import { dashboardLinks } from "./navlinks/dashboardLinks";
 import { useSession } from "next-auth/react";
 
-function Sidebar({ showMenu, setShowMenu, name }) {
+function Sidebar({ showMenu, setShowMenu, name, navLinks }) {
   // const [role, setRole] = useState("root");
   const router = useRouter();
-
-  const { data } = useSession();
-
-  const admin = data?.user?.admin;
 
   // console.log("usersession", data);
 
@@ -27,21 +23,12 @@ function Sidebar({ showMenu, setShowMenu, name }) {
     if (router.pathname === path) {
       return "bg-custom-blue5 text-white";
     }
-    // if (router.pathname.split("/").includes(path)) {
+    // if (router.pathname.includes(path)) {
     //   return "bg-custom-blue5 text-white";
     // }
+
     return "text-custom-blue2 hover:text-white hover:bg-custom-blue5";
   };
-
-  const filteredLinks = () => {
-    if (admin === false) {
-      return dashboardLinks.filter((item) => item.name !== "Posters");
-    } else {
-      return dashboardLinks;
-    }
-  };
-
-  const navLinks = filteredLinks();
 
   return (
     <div
@@ -54,7 +41,7 @@ function Sidebar({ showMenu, setShowMenu, name }) {
         </div>
 
         <div className="mt-3 mx-3 space-y-5">
-          {navLinks.map((navLink, i) => (
+          {navLinks?.map((navLink, i) => (
             <div key={i} className="">
               <Link href={navLink.link} passHref>
                 <div

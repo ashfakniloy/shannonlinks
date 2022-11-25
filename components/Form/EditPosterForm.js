@@ -33,7 +33,7 @@ function EditPosterForm() {
   const allLinks = fetchedLinks?.users;
 
   const initialvalues = {
-    username: username ? username : "",
+    // username: username ? username : "",
     password: password ? password : "",
     // posterId: posterId,
     // links: [],
@@ -42,7 +42,7 @@ function EditPosterForm() {
   };
 
   const validate = Yup.object({
-    username: Yup.string().required("Username is required"),
+    // username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
     // posterId: Yup.string()
     //   .required("Poster Id is required")
@@ -56,19 +56,21 @@ function EditPosterForm() {
     const { username, password, yourLinks, availableLinks } = values;
     const submitvalues = {
       id: id,
-      username: username,
+      // username: username,
       password: password,
-      posterId: posterId,
+      // posterId: posterId,
       links: [...yourLinks, ...availableLinks],
       // yourLinks: yourLinks,
       // availableLinks: availableLinks,
     };
 
+    // console.log("edit", submitvalues);
+
     if (submitvalues.links.length === 0) {
       setLinksError(true);
     } else {
       setLinksError(false);
-      console.log(submitvalues);
+      console.log("edit", submitvalues);
     }
 
     // postData(submitvalues);
@@ -79,7 +81,7 @@ function EditPosterForm() {
   // const output = allLinks.filter((obj) => array1.indexOf(obj) !== -1);
 
   const linksAvailable = allLinks?.filter((link) => {
-    const newLink = `${link}${adminId}/${posterId}`;
+    const newLink = `${link}/${adminId}/${posterId}`;
     return !yourLinks?.includes(newLink);
   });
 
@@ -95,9 +97,9 @@ function EditPosterForm() {
       >
         {(formik) => (
           <Form>
-            <h1 className="text-lg font-semibold ">Edit Poster</h1>
+            <h1 className="text-lg font-semibold ">Edit Poster: {username}</h1>
             <div className="relative pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
-              <TextField label="Username *" name="username" type="text" />
+              {/* <TextField label="Username *" name="username" type="text" /> */}
               <TextField label="Password *" name="password" type="text" />
               {/* <TextField
                 label="Poster Id (max 3 characters) *"
@@ -112,9 +114,9 @@ function EditPosterForm() {
                     {yourLinks?.map((link, i) => (
                       <CheckboxField
                         key={i}
-                        label={`${link}`}
+                        label={link}
                         name="yourLinks"
-                        value={`${link}`}
+                        value={link}
                         // checked
                       />
                     ))}
@@ -132,9 +134,9 @@ function EditPosterForm() {
                     {linksAvailable?.map((link, i) => (
                       <CheckboxField
                         key={i}
-                        label={`${link}${adminId}/${posterId}`}
+                        label={`${link}/${adminId}/${posterId}`}
                         name="availableLinks"
-                        value={`${link}${adminId}/${posterId}`}
+                        value={`${link}/${adminId}/${posterId}`}
                       />
                     ))}
 

@@ -74,7 +74,7 @@ function PosterDetailsPage({ data }) {
       </div>
 
       <div className="mt-7 flex gap-8">
-        <div className="">
+        <div className="sticky top-[157px] self-start">
           <div className="text-sm text-custom-gray3 font-semibold min-w-[350px] bg-white p-8 rounded shadow-md">
             <h4 className="text-xl text-black">Informations:</h4>
             <div className="mt-3 space-y-3">

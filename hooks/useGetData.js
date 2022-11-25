@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -7,12 +7,12 @@ import useSWR from "swr";
 import { API_URL } from "../config";
 
 function useGetData(route) {
-  // const { data } = useSession();
+  const { data, status } = useSession();
   // const { token, id, identity_id } = data ? data.user : "";
 
   // console.log("access data is", data);
 
-  const id = Cookies.get("id");
+  // const id = Cookies.get("id");
 
   //with react-query
   // const url = `${API_URL}/${route}/${id}/${identity_id ? identity_id : ""}`;
@@ -46,12 +46,14 @@ function useGetData(route) {
 
   //with swr
   const fetcher = async (url) => {
-    const res = await fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: `Bearer ${token}`,
-      },
-    });
+    const res =
+      // status === "authenticated" &&
+      await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${token}`,
+        },
+      });
     const fetchedData = await res.json();
 
     console.log("fetched", fetchedData);
@@ -60,7 +62,8 @@ function useGetData(route) {
 
   const url = `${API_URL}${route}`;
   // console.log("test", url);
-  const { data: fetchedData, error } = useSWR(`${API_URL}${route}`, fetcher);
+  // const { data: fetchedData, error } = useSWR(`${API_URL}${route}`, fetcher);
+  const { data: fetchedData, error } = useSWR(url, fetcher);
 
   return {
     fetchedData: fetchedData ? fetchedData : "",
