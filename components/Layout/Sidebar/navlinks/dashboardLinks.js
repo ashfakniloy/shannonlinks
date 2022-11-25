@@ -15,18 +15,24 @@ export const dashboardLinks = [
   },
   {
     id: 3,
+    name: "Collections",
+    link: "/collections",
+    icon: <FaEnvelope />,
+  },
+  {
+    id: 4,
     name: "Posters",
     link: "/posters",
     icon: <FaUsers />,
   },
   {
-    id: 4,
+    id: 5,
     name: "ID Card",
     link: "/id-card",
     icon: <FaImage />,
   },
   {
-    id: 5,
+    id: 6,
     name: "Link",
     link: "/link",
     icon: <FaGlobe />,

@@ -31,6 +31,13 @@ export default async function middleware(req) {
     return NextResponse.next();
   }
 
+  if (user && pathname === "/collections") {
+    if (role) {
+      return NextResponse.redirect(`${origin}/404`);
+    }
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 
   // const redirectPage = () => NextResponse.redirect(`${origin}/user-signin`);
@@ -53,6 +60,7 @@ export const config = {
     "/users",
     "/id-card",
     "/link",
+    "/collections",
     "/posters/:path*",
   ],
 };

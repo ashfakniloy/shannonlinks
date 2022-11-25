@@ -21,7 +21,7 @@ function Layout({ children, heading }) {
 
   const filteredLinks = () => {
     if (admin === true) {
-      return dashboardLinks;
+      return dashboardLinks.filter((item) => item.name !== "Collections");
     }
     if (admin === false) {
       return dashboardLinks.filter((item) => item.name !== "Posters");

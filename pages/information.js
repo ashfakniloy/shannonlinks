@@ -11,7 +11,7 @@ function InformationPage() {
   const { data: session } = useSession();
   const { id, username, admin, adminId } = session ? session.user : "";
 
-  // console.log(id);
+  console.log(id);
 
   // const infoData = data?.users;
 
