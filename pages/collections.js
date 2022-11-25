@@ -1,6 +1,6 @@
 import { getSession, useSession } from "next-auth/react";
 import React from "react";
-import { FaUser } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 import Table from "../components/Table";
 import { collectionColumn } from "../components/Table/columns/collectionColumn";
 import { API_URL } from "../config";
@@ -23,7 +23,7 @@ function CollectionsPage() {
     <div className="">
       <div className="flex items-center gap-3">
         <span className="text-[28px] text-custom-blue2">
-          <FaUser />
+          <FaEnvelope />
         </span>
         <h1 className="text-2xl font-bold text-custom-gray2">Collections</h1>
       </div>
