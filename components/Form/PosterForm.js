@@ -39,12 +39,12 @@ function PosterForm({ id, adminId }) {
     posterId: Yup.string()
       .required("Poster Id is required")
       .max(3, "Not More than 3 characters"),
-    // links: Yup.array().min(1, "Atleast one site is required"),
+    links: Yup.array().min(1, "Atleast one site is required"),
   });
 
-  console.log("links", fetchedData?.users);
+  // console.log("links", fetchedData?.users);
 
-  const links = fetchedData?.users;
+  const fetchedLinks = fetchedData?.users;
 
   const handleSubmit = (values, formik) => {
     const { username, password, posterId, links } = values;
@@ -94,12 +94,13 @@ function PosterForm({ id, adminId }) {
                 <div className="flex">
                   {formik.values.posterId ? (
                     <div className="relative mt-2 grid grid-cols-2 gap-y-2 gap-x-10">
-                      {links?.map((link, i) => (
+                      {fetchedLinks?.map((link, i) => (
                         <CheckboxField
                           key={i}
-                          label={`${link}/${adminId}/${formik.values.posterId}`}
                           name="links"
+                          label={`${link}/${adminId}/${formik.values.posterId}`}
                           value={`${link}/${adminId}/${formik.values.posterId}`}
+                          resetonchange="true"
                         />
                       ))}
                       {linksError ? (
@@ -109,9 +110,9 @@ function PosterForm({ id, adminId }) {
                       ) : (
                         ""
                       )}
-                      {/* <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                      <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
                         <ErrorMessage name="links" />
-                      </p> */}
+                      </p>
                     </div>
                   ) : (
                     <p className="mt-2">Enter User ID First</p>

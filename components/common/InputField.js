@@ -92,12 +92,12 @@ export const PasswordField = ({ label, ...props }) => {
 export const CheckboxField = ({ label, ...props }) => {
   const { setFieldValue } = useFormikContext();
 
+  //for resetting checkbox previous value if current value changes
   useEffect(() => {
-    // do something when some field in the form changes
-    if (label) {
-      setFieldValue("links", "");
+    if (props.resetonchange === "true") {
+      setFieldValue(props.name, "");
     }
-  }, [label, setFieldValue]);
+  }, [props.value, props.resetonchange, props.name, setFieldValue]);
 
   return (
     <div className="">
