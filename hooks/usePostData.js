@@ -30,7 +30,7 @@ function usePostData(path) {
     if (res.ok) {
       console.log("success", data);
       toast.success("Submitted Succcessfully");
-      // formik.resetForm();
+      formik.resetForm();
     } else {
       console.log("error", data);
       toast.error(data.error);

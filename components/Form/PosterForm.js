@@ -49,7 +49,7 @@ function PosterForm({ id, adminId }) {
       links: links,
     };
     // console.log(submitvalues);
-    postData(submitvalues);
+    postData(submitvalues, formik);
   };
 
   return (
