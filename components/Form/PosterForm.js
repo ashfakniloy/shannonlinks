@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import usePostData from "../../hooks/usePostData";
 import { CheckboxField, TextField } from "../common/InputField";
 import useGetData from "../../hooks/useGetData";
+import { useState } from "react";
 
 function PosterForm({ id, adminId }) {
   // const { data: session } = useSession();
@@ -14,6 +15,16 @@ function PosterForm({ id, adminId }) {
   // const id = data?.user?.id;
 
   // const adminId = data?.user?.adminId;
+
+  const [linksState, setLinksState] = useState([]);
+
+  const [idChange, setIdChange] = useState(false);
+
+  const [linksError, setLinksError] = useState(false);
+
+  const { postData } = usePostData("/admin/add");
+
+  const { fetchedData } = useGetData(`/link/get/${id}`);
 
   const initialvalues = {
     username: "",
@@ -28,12 +39,8 @@ function PosterForm({ id, adminId }) {
     posterId: Yup.string()
       .required("Poster Id is required")
       .max(3, "Not More than 3 characters"),
-    links: Yup.array().min(1, "Atleast one site is required"),
+    // links: Yup.array().min(1, "Atleast one site is required"),
   });
-
-  const { postData } = usePostData("/admin/add");
-
-  const { fetchedData } = useGetData(`/link/get/${id}`);
 
   console.log("links", fetchedData?.users);
 
@@ -48,8 +55,18 @@ function PosterForm({ id, adminId }) {
       posterId: posterId,
       links: links,
     };
+
+    if (submitvalues.links.length === 0) {
+      setLinksError(true);
+    } else {
+      setLinksError(false);
+      // console.log("submitposter", submitvalues);
+      postData(submitvalues, formik);
+    }
+
     // console.log(submitvalues);
-    postData(submitvalues, formik);
+
+    // postData(submitvalues, formik);
   };
 
   return (
@@ -85,16 +102,22 @@ function PosterForm({ id, adminId }) {
                           value={`${link}/${adminId}/${formik.values.posterId}`}
                         />
                       ))}
-                      <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                      {linksError ? (
+                        <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                          Atleast one site is required
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                      {/* <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
                         <ErrorMessage name="links" />
-                      </p>
+                      </p> */}
                     </div>
                   ) : (
                     <p className="mt-2">Enter User ID First</p>
                   )}
                 </div>
               </div>
-              {/* <TextField label="Link Id *" name="linkId" type="text" /> */}
             </div>
             <div className="mt-10 flex justify-start">
               <button

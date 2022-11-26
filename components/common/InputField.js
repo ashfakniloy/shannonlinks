@@ -1,5 +1,12 @@
-import { ErrorMessage, Field } from "formik";
-import { useState } from "react";
+import {
+  ErrorMessage,
+  Field,
+  Formik,
+  getIn,
+  useField,
+  useFormikContext,
+} from "formik";
+import { useEffect, useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 // export const TextField = ({ label, ...props }) => {
@@ -83,6 +90,15 @@ export const PasswordField = ({ label, ...props }) => {
 };
 
 export const CheckboxField = ({ label, ...props }) => {
+  const { setFieldValue } = useFormikContext();
+
+  useEffect(() => {
+    // do something when some field in the form changes
+    if (label) {
+      setFieldValue("links", "");
+    }
+  }, [label, setFieldValue]);
+
   return (
     <div className="">
       <label className="">

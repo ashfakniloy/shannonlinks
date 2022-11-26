@@ -1,9 +1,10 @@
 import { API_URL } from "../config";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+// import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 function usePostData(path) {
+  // const [submitted, setSubmitted] = useState("");
   const { data } = useSession();
   const { token, id } = data ? data.user : "";
 
@@ -30,14 +31,18 @@ function usePostData(path) {
     if (res.ok) {
       console.log("success", data);
       toast.success("Submitted Succcessfully");
+      // setSubmitted(true);
       formik.resetForm();
     } else {
       console.log("error", data);
+      // setSubmitted(false);
       toast.error(data.error);
     }
   };
 
   return { postData };
+
+  // return { postData, submitted };
 }
 
 export default usePostData;
