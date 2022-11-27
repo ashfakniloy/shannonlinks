@@ -9,10 +9,11 @@ import { useEffect, useState } from "react";
 
 function EditPosterForm({
   id,
+  posterId,
   adminId,
   username,
   password,
-  posterId,
+  posterEditId,
   yourLinks,
   linksAvailable,
 }) {
@@ -60,14 +61,16 @@ function EditPosterForm({
 
   const [linksError, setLinksError] = useState(false);
 
+  const { postData } = usePostData("/add/newsite/update");
+
   const handleSubmit = (values, formik) => {
     const { username, password, yourLinks, availableLinks } = values;
     const submitvalues = {
-      id: id,
-      // username: username,
+      id: posterEditId,
       password: password,
-      // posterId: posterId,
       links: [...yourLinks, ...availableLinks],
+      // posterId: posterId,
+      // username: username,
       // yourLinks: yourLinks,
       // availableLinks: availableLinks,
     };
@@ -78,10 +81,11 @@ function EditPosterForm({
       setLinksError(true);
     } else {
       setLinksError(false);
-      console.log("edit", submitvalues);
+      // console.log("edit", submitvalues);
+      const goto = "/posters";
+      // const resetForm = formik.resetForm();
+      postData(submitvalues, goto, formik);
     }
-
-    // postData(submitvalues);
   };
 
   // const newLink = `${link}${adminId}/${posterId}`

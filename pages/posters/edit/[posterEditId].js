@@ -55,6 +55,7 @@ function PosterEditPage() {
         <div className="mt-7 bg-white p-8 rounded shadow-md">
           <EditPosterForm
             id={id}
+            posterEditId={posterEditId}
             adminId={adminId}
             username={username}
             password={password}

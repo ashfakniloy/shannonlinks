@@ -5,6 +5,7 @@ import usePostData from "../../hooks/usePostData";
 import { CheckboxField, TextField } from "../common/InputField";
 import useGetData from "../../hooks/useGetData";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function PosterForm({ id, adminId }) {
   // const { data: session } = useSession();
@@ -16,9 +17,7 @@ function PosterForm({ id, adminId }) {
 
   // const adminId = data?.user?.adminId;
 
-  const [linksState, setLinksState] = useState([]);
-
-  const [idChange, setIdChange] = useState(false);
+  const router = useRouter();
 
   const [linksError, setLinksError] = useState(false);
 
@@ -62,7 +61,9 @@ function PosterForm({ id, adminId }) {
     } else {
       setLinksError(false);
       // console.log("submitposter", submitvalues);
-      postData(submitvalues, formik);
+      const goto = "/posters";
+      // const resetForm = true
+      postData(submitvalues, goto, formik);
     }
 
     // console.log(submitvalues);

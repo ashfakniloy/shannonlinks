@@ -9,7 +9,7 @@ import { linkColumn } from "../components/Table/columns/linkColumn";
 // import { linkData } from "../data/linkData";
 import useGetData from "../hooks/useGetData";
 
-function LinkPage() {
+function LinksPage() {
   const { data: session } = useSession();
   const { id, username, admin, adminId } = session ? session.user : "";
   console.log("id", id);
@@ -66,7 +66,7 @@ function LinkPage() {
         <span className="text-[28px] text-custom-blue2">
           <FaGlobe />
         </span>
-        <h1 className="text-2xl font-bold text-custom-gray2">Link</h1>
+        <h1 className="text-2xl font-bold text-custom-gray2">Links</h1>
       </div>
 
       {admin ? (
@@ -121,4 +121,4 @@ function LinkPage() {
   );
 }
 
-export default LinkPage;
+export default LinksPage;

@@ -33,8 +33,8 @@ export const dashboardLinks = [
   },
   {
     id: 6,
-    name: "Link",
-    link: "/link",
+    name: "Links",
+    link: "/links",
     icon: <FaGlobe />,
   },
 ];

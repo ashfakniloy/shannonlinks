@@ -2,17 +2,21 @@ import { API_URL } from "../config";
 import { useSession } from "next-auth/react";
 // import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { Formik } from "formik";
 
 function usePostData(path) {
   // const [submitted, setSubmitted] = useState("");
   const { data } = useSession();
   const { token, id } = data ? data.user : "";
 
+  const router = useRouter();
+
   const url = `${API_URL}${path}`;
 
   // console.log(url);
 
-  const postData = async (values, formik) => {
+  const postData = async (values, goto, formik) => {
     // console.log(values);
     // return;
 
@@ -32,7 +36,8 @@ function usePostData(path) {
       console.log("success", data);
       toast.success("Submitted Succcessfully");
       // setSubmitted(true);
-      formik.resetForm();
+      goto && router.push(goto);
+      // formik.resetForm()
     } else {
       console.log("error", data);
       // setSubmitted(false);
