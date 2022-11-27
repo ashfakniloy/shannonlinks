@@ -14,6 +14,7 @@ function Layout({ children, heading }) {
   const { data } = useSession();
 
   const admin = data?.user?.admin;
+  const username = data?.user?.username;
 
   // console.log("usersession", data);
 
@@ -42,7 +43,7 @@ function Layout({ children, heading }) {
         />
 
         <div className="flex-1">
-          <Header />
+          <Header admin={admin} username={username} />
 
           <div className="p-7">
             {/* <PageHeading /> */}

@@ -7,9 +7,17 @@ import useGetData from "../../hooks/useGetData";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-function EditPosterForm() {
-  const { data: session } = useSession();
-  const { id, admin, adminId } = session ? session.user : "";
+function EditPosterForm({
+  id,
+  adminId,
+  username,
+  password,
+  posterId,
+  yourLinks,
+  linksAvailable,
+}) {
+  // const { data: session } = useSession();
+  // const { id, admin, adminId } = session ? session.user : "";
 
   // console.log("form", data);
 
@@ -17,20 +25,20 @@ function EditPosterForm() {
 
   // const adminId = data?.user?.adminId;
 
-  const {
-    query: { posterEditId },
-  } = useRouter();
+  // const {
+  //   query: { posterEditId },
+  // } = useRouter();
 
-  const { fetchedData } = useGetData(`/poster/details/${posterEditId}`);
-  const username = fetchedData?.data?.username;
-  const password = fetchedData?.data?.password;
-  const posterId = fetchedData?.data?.posterId;
-  const yourLinks = fetchedData?.data?.links;
-  // console.log("poster details", username);
+  // const { fetchedData, isLoading } = useGetData(`/poster/details/${posterEditId}`);
+  // const username = fetchedData?.data?.username;
+  // const password = fetchedData?.data?.password;
+  // const posterId = fetchedData?.data?.posterId;
+  // const yourLinks = fetchedData?.data?.links;
+  // // console.log("poster details", username);
 
-  const { fetchedData: fetchedLinks } = useGetData(`/link/get/${id}`);
+  // const { fetchedData: fetchedLinks } = useGetData(`/link/get/${id}`);
 
-  const allLinks = fetchedLinks?.users;
+  // const allLinks = fetchedLinks?.users;
 
   const initialvalues = {
     // username: username ? username : "",
@@ -80,10 +88,10 @@ function EditPosterForm() {
 
   // const output = allLinks.filter((obj) => array1.indexOf(obj) !== -1);
 
-  const linksAvailable = allLinks?.filter((link) => {
-    const newLink = `${link}/${adminId}/${posterId}`;
-    return !yourLinks?.includes(newLink);
-  });
+  // const linksAvailable = allLinks?.filter((link) => {
+  //   const newLink = `${link}/${adminId}/${posterId}`;
+  //   return !yourLinks?.includes(newLink);
+  // });
 
   // console.log("available", linksAvailable());
 

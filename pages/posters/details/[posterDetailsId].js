@@ -7,45 +7,6 @@ import { collectionColumn } from "../../../components/Table/columns/collectionCo
 import { API_URL } from "../../../config";
 import useGetData from "../../../hooks/useGetData";
 
-const usersData = [
-  {
-    site: "www.sitename.com/001/001",
-    email: "email@email.com",
-    password: "123456",
-    skipcode: "abcd",
-  },
-  {
-    site: "www.sitename.com/001/001",
-    email: "email@email.com",
-    password: "123456",
-    skipcode: "abcd",
-  },
-  {
-    site: "www.sitename.com/001/001",
-    email: "email@email.com",
-    password: "123456",
-    skipcode: "abcd",
-  },
-  {
-    site: "www.sitename.com/001/001",
-    email: "email@email.com",
-    password: "123456",
-    skipcode: "abcd",
-  },
-  {
-    site: "www.sitename.com/001/001",
-    email: "email@email.com",
-    password: "123456",
-    skipcode: "abcd",
-  },
-  {
-    site: "www.sitename.com/001/001",
-    email: "email@email.com",
-    password: "123456",
-    skipcode: "abcd",
-  },
-];
-
 function PosterDetailsPage({ data }) {
   // const { data: session } = useSession();
   // const { id, username, admin, adminId } = session ? session.user : "";
@@ -64,6 +25,8 @@ function PosterDetailsPage({ data }) {
 
   console.log("dd", details);
 
+  const { back } = useRouter();
+
   return (
     <div className="">
       <div className="flex items-center gap-3">
@@ -71,6 +34,15 @@ function PosterDetailsPage({ data }) {
           <FaUser />
         </span>
         <h1 className="text-2xl font-bold text-custom-gray2">Poster Details</h1>
+      </div>
+
+      <div className="my-5">
+        <span
+          className="text-sm text-blue-700 hover:text-blue-900 cursor-pointer"
+          onClick={() => back()}
+        >
+          {"<"} Go Back
+        </span>
       </div>
 
       <div className="mt-7 flex gap-8">

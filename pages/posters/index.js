@@ -1,6 +1,7 @@
 import { getSession, useSession } from "next-auth/react";
 import { useState } from "react";
 import { FaUsers } from "react-icons/fa";
+import Loader from "../../components/common/Loader";
 import PosterForm from "../../components/Form/PosterForm";
 import Table from "../../components/Table";
 import { postersColumn } from "../../components/Table/columns/postersColumn";
@@ -21,7 +22,7 @@ function Posterspage() {
   const { data: session } = useSession();
   const { id, username, admin, adminId } = session ? session.user : "";
 
-  const { fetchedData } = useGetData(`/all/poster/${id}`);
+  const { fetchedData, isLoading } = useGetData(`/all/poster/${id}`);
   // console.log("postersss", fetchedData);
 
   console.log("session", session);
@@ -46,7 +47,7 @@ function Posterspage() {
   ];
 
   return (
-    <div className="">
+    <div className="relative">
       <div className="flex items-center gap-3">
         <span className="text-[28px] text-custom-blue2">
           <FaUsers />
@@ -54,9 +55,11 @@ function Posterspage() {
         <h1 className="text-2xl font-bold text-custom-gray2">Posters</h1>
       </div>
 
-      <div className="mt-7 bg-white p-8 rounded shadow-md">
-        <Tabs tabsData={tabsData} />
-      </div>
+      <Loader isLoading={isLoading}>
+        <div className="mt-7 bg-white p-8 rounded shadow-md">
+          <Tabs tabsData={tabsData} />
+        </div>
+      </Loader>
     </div>
   );
 }

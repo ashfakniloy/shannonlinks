@@ -38,7 +38,8 @@ function PosterForm({ id, adminId }) {
     password: Yup.string().required("Password is required"),
     posterId: Yup.string()
       .required("Poster Id is required")
-      .max(3, "Not More than 3 characters"),
+      .max(3, "Not More than 3 characters")
+      .matches(/^[a-zA-Z0-9@]+$/, "Cannot contain space and special character"),
     links: Yup.array().min(1, "Atleast one site is required"),
   });
 
