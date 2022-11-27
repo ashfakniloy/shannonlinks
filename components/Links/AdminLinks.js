@@ -58,7 +58,7 @@ function AdminLinks({ id, admin }) {
   // };
 
   return (
-    <div className="relative">
+    <div className="">
       {/* <div className="flex items-center gap-3">
         <span className="text-[28px] text-custom-blue2">
           <FaGlobe />
