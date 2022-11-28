@@ -96,7 +96,7 @@ function PosterForm({ id, adminId }) {
                 <div className="flex flex-col">
                   {formik.values.posterId ? (
                     <div className="relative">
-                      <div className="mt-2 grid grid-cols-1 gap-x-10 divide-y-2 w-full border border-gray-200">
+                      <div className="mt-2 grid grid-cols-1 gap-x-10 divide-y-2 w-full border border-gray-200 break-words overflow-hidden">
                         {fetchedLinks?.map((link, i) => (
                           <CheckboxField
                             key={i}
