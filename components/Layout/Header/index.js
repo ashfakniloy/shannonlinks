@@ -68,7 +68,7 @@ function Header({ admin, username, showMenu, setShowMenu }) {
           <p className="py-3">Role : {admin ? "Admin" : "Poster"}</p>
           <button
             type="button"
-            className="mt-2 px-5  py-3 bg-custom-blue text-sm rounded-lg"
+            className="mt-2 px-5  py-3 bg-custom-blue hover:bg-opacity-80 text-sm rounded-lg active:scale-95 transition duration-200"
             onClick={handleLogout}
           >
             Logout

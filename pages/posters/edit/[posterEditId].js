@@ -24,7 +24,9 @@ function PosterEditPage() {
   const yourLinks = fetchedData?.data?.links;
   // console.log("poster details", username);
 
-  const { fetchedData: fetchedLinks } = useGetData(`/link/get/${id}`);
+  const { fetchedData: fetchedLinks, isLoading: isLoading2 } = useGetData(
+    `/link/get/${id}`
+  );
 
   const allLinks = fetchedLinks?.users;
 
@@ -51,7 +53,7 @@ function PosterEditPage() {
         </span>
       </div>
 
-      <Loader isLoading={isLoading}>
+      <Loader isLoading={isLoading || isLoading2}>
         <div className="mt-7 bg-white p-4 lg:p-8 rounded shadow-md">
           <EditPosterForm
             id={id}

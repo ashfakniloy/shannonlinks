@@ -9,7 +9,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
       <NextNProgress options={{ showSpinner: false }} />
-      <ToastContainer />
+      <ToastContainer
+        className="mt-[72px] lg:mt-[52px] z-10"
+        autoClose={1500}
+      />
       <Layout>
         <Component {...pageProps} />
       </Layout>
