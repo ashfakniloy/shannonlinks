@@ -12,7 +12,7 @@ import { Formik, Form } from "formik";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import Link from "next/link";
-import { TextField } from "../components/common/InputField";
+import { PasswordField, TextField } from "../components/common/InputField";
 import useLogin from "../hooks/useLogin";
 import { getSession } from "next-auth/react";
 
@@ -63,7 +63,7 @@ function SignInPage({ user, loginRoute, dashboardRoute }) {
       <div className="flex justify-center items-center h-screen">
         {/* {loading && <FullPageLoader />} */}
 
-        <div className="bg-white px-10 py-14 shadow-lg rounded">
+        <div className="bg-white px-5 lg:px-10 py-14 shadow-lg rounded">
           <h1 className="text-2xl font-semibold text-center">Sign In</h1>
           <div className="mt-8">
             <Formik
@@ -74,31 +74,30 @@ function SignInPage({ user, loginRoute, dashboardRoute }) {
               {(formik) => (
                 <Form>
                   <div className="text-sm gap-y-5 md:gap-y-7">
-                    <div className="lg:min-w-[350px] space-y-4">
+                    <div className="min-w-[300px] lg:min-w-[350px] space-y-4">
                       <TextField
                         label="Username *"
                         name="username"
                         type="text"
                       />
-                      <div className="relative">
-                        <TextField
-                          label="Password *"
-                          name="password"
-                          type={showPassword ? "text" : "password"}
-                          autoComplete="on"
-                        />
-                        <div
-                          className="absolute right-3 top-[30px] text-base p-[6px] cursor-pointer hover:bg-gray-200 active:bg-gray-300 rounded-full text-black/60"
+
+                      <PasswordField
+                        label="Password *"
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        autoComplete="on"
+                      />
+                      {/* <div
+                          className="absolute right-3 inset-y-0 text-base p-[6px] cursor-pointer hover:bg-gray-200 active:bg-gray-300 rounded-full text-black/60"
                           onClick={() => setShowPassword(!showPassword)}
                         >
-                          {/* {showPassword ? <FaRegEye /> : <FaRegEyeSlash />} */}
+                    
                           {showPassword ? (
                             <MdVisibility />
                           ) : (
                             <MdVisibilityOff />
                           )}
-                        </div>
-                      </div>
+                        </div> */}
                     </div>
                     <button
                       type="submit"
@@ -110,11 +109,11 @@ function SignInPage({ user, loginRoute, dashboardRoute }) {
                       {status === "loading" && <p>logging in</p>}
                     </span> */}
 
-                    <p className="mt-6 text-sm text-custom-blue4 hover:text-custom-blue transition duration-300">
+                    {/* <p className="mt-6 text-sm text-custom-blue4 hover:text-custom-blue transition duration-300">
                       <Link href="/sign-up">
                         Don&apos;t have an account? Create account
                       </Link>
-                    </p>
+                    </p> */}
                   </div>
                 </Form>
               )}

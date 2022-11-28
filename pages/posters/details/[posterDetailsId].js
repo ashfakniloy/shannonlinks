@@ -45,9 +45,9 @@ function PosterDetailsPage({ data }) {
         </span>
       </div>
 
-      <div className="mt-7 flex gap-8">
-        <div className="sticky top-[157px] self-start">
-          <div className="text-sm text-custom-gray3 font-semibold min-w-[350px] bg-white p-8 rounded shadow-md">
+      <div className="mt-7 flex flex-col lg:flex-row gap-8">
+        <div className="lg:sticky top-[157px] lg:self-start">
+          <div className="text-sm text-custom-gray3 font-semibold min-w-[350px] bg-white p-4 lg:p-8 rounded shadow-md">
             <h4 className="text-xl text-black">Informations:</h4>
             <div className="mt-3 space-y-3">
               <p className="grid grid-cols-2">
@@ -70,8 +70,8 @@ function PosterDetailsPage({ data }) {
           </div>
         </div>
 
-        <div className=" flex-1">
-          <div className="bg-white p-8 rounded shadow-md">
+        <div className="lg:flex-1">
+          <div className="bg-white p-4 lg:p-8 rounded shadow-md">
             <h2 className="text-xl font-semibold mb-5">Collections:</h2>
             <div className="-mt-10">
               {details && (

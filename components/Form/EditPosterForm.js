@@ -56,7 +56,7 @@ function EditPosterForm({
     // posterId: Yup.string()
     //   .required("Poster Id is required")
     //   .max(3, "Not More than 3 characters"),
-    // yourLinks: Yup.array().min(1, "Atleast one site is required"),
+    // yourLinks: Yup.array().min(1, "Atleast one link is required"),
   });
 
   const [linksError, setLinksError] = useState(false);
@@ -120,63 +120,58 @@ function EditPosterForm({
                 maxLength={3}
               /> */}
               <div className="col-start-1">
-                <h4 className="">Poster&apos;s Sites *</h4>
-                <div className="flex">
-                  <div className="relative mt-2 gap-y-2 ">
+                <p className="font-semibold text-gray-600">
+                  Poster&apos;s Links
+                </p>
+                <div className="flex flex-col">
+                  <div className="relative mt-2 divide-y-2 w-full border border-gray-200">
                     {yourLinks?.map((link, i) => (
                       <CheckboxField
                         key={i}
-                        label={link}
+                        label={link.split("https://").join("")}
                         name="yourLinks"
                         value={link}
                         // checked
                       />
                     ))}
-                    <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
-                      <ErrorMessage name="links" />
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="">
-                <h4 className="">Available Sites for Poster*</h4>
-                <div className="flex">
-                  <div className="relative mt-2 gap-y-2 ">
-                    {linksAvailable?.map((link, i) => (
-                      <CheckboxField
-                        key={i}
-                        label={`${link}/${adminId}/${posterId}`}
-                        name="availableLinks"
-                        value={`${link}/${adminId}/${posterId}`}
-                      />
-                    ))}
-
-                    {/* {allLinks?.map((link, i) => {
-                      const newLink = `${link}${adminId}/${posterId}`;
-                      const filteredLinks = yourLinks?.filter(
-                        (yourLink) => newLink === yourLink
-                      );
-                      
-                      return (
-                        <CheckboxField
-                          key={i}
-                          label={filteredLinks}
-                          name="availableLinks"
-                          value={filteredLinks}
-                        />
-                      );
-                    })} */}
-
                     {/* <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
                       <ErrorMessage name="links" />
                     </p> */}
                   </div>
                 </div>
               </div>
+
+              <div className="">
+                <p className="font-semibold text-gray-600">
+                  Available Links for Poster
+                </p>
+                {linksAvailable?.length > 0 ? (
+                  <div className="flex flex-col">
+                    <div className="relative mt-2 divide-y-2 w-full border border-gray-200">
+                      {linksAvailable?.map((link, i) => (
+                        <CheckboxField
+                          key={i}
+                          label={`${link
+                            .split("https://")
+                            .join("")}/${adminId}/${posterId}`}
+                          name="availableLinks"
+                          value={`${link}/${adminId}/${posterId}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-2 font-semibold text-gray-600">
+                    No links available
+                  </p>
+                )}
+              </div>
+              {/* <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                <ErrorMessage name="links" />
+              </p> */}
               {linksError ? (
                 <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
-                  Atleast one site is required
+                  Atleast one link is required
                 </p>
               ) : (
                 ""

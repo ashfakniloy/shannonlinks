@@ -62,12 +62,12 @@ function LinksPage() {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-3">
+      {/* <div className="flex items-center gap-3">
         <span className="text-[28px] text-custom-blue2">
           <FaGlobe />
         </span>
         <h1 className="text-2xl font-bold text-custom-gray2">Links</h1>
-      </div>
+      </div> */}
 
       {admin ? (
         <AdminLinks id={id} admin={admin && 1} />

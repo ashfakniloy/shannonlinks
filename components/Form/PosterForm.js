@@ -39,7 +39,7 @@ function PosterForm({ id, adminId }) {
       .required("Poster Id is required")
       .max(3, "Not More than 3 characters")
       .matches(/^[a-zA-Z0-9@]+$/, "Cannot contain space and special character"),
-    links: Yup.array().min(1, "Atleast one site is required"),
+    links: Yup.array().min(1, "Atleast one link is required"),
   });
 
   // console.log("links", fetchedData?.users);
@@ -82,7 +82,7 @@ function PosterForm({ id, adminId }) {
         {(formik) => (
           <Form>
             <h1 className="text-lg font-semibold ">Add New Poster</h1>
-            <div className="pt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
+            <div className="pt-7 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-5 md:gap-y-7">
               <TextField label="Username *" name="username" type="text" />
               <TextField label="Password *" name="password" type="text" />
               <TextField
@@ -91,33 +91,39 @@ function PosterForm({ id, adminId }) {
                 type="text"
                 maxLength={3}
               />
-              <div className="col-span-3">
-                <h4 className="">Sites *</h4>
-                <div className="flex">
+              <div className="">
+                <p className="font-semibold text-gray-600">Links *</p>
+                <div className="flex flex-col">
                   {formik.values.posterId ? (
-                    <div className="relative mt-2 grid grid-cols-2 gap-y-2 gap-x-10">
-                      {fetchedLinks?.map((link, i) => (
-                        <CheckboxField
-                          key={i}
-                          name="links"
-                          label={`${link}/${adminId}/${formik.values.posterId}`}
-                          value={`${link}/${adminId}/${formik.values.posterId}`}
-                          resetonchange="true"
-                        />
-                      ))}
+                    <div className="relative">
+                      <div className="mt-2 grid grid-cols-1 gap-x-10 divide-y-2 w-full border border-gray-200">
+                        {fetchedLinks?.map((link, i) => (
+                          <CheckboxField
+                            key={i}
+                            name="links"
+                            label={`${link
+                              .split("https://")
+                              .join("")}/${adminId}/${formik.values.posterId}`}
+                            value={`${link}/${adminId}/${formik.values.posterId}`}
+                            resetonchange="true"
+                          />
+                        ))}
+                      </div>
                       {linksError ? (
-                        <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
-                          Atleast one site is required
+                        <p className="absolute -bottom-5 text-red-600 text-xs font-semibold">
+                          Atleast one link is required
                         </p>
                       ) : (
                         ""
                       )}
-                      <p className="absolute -bottom-6 text-red-700 text-sm font-semibold">
+                      <p className="absolute -bottom-5 text-red-600 text-xs font-semibold">
                         <ErrorMessage name="links" />
                       </p>
                     </div>
                   ) : (
-                    <p className="mt-2">Enter User ID First</p>
+                    <p className="mt-2 font-semibold text-gray-600">
+                      Enter User ID First
+                    </p>
                   )}
                 </div>
               </div>

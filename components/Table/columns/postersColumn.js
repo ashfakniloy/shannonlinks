@@ -27,9 +27,8 @@ export const postersColumn = [
   {
     Header: "Options",
     accessor: "_id",
-    // Header: ({ value }) => <div className="text-red-500">Hi</div>,
     disableSortBy: true,
-    width: 200,
+    // width: 200,
     Cell: ({ value }) => (
       <div className="flex justify-center items-center gap-2">
         <div className="">

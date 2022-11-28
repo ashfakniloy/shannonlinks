@@ -52,7 +52,7 @@ function PosterEditPage() {
       </div>
 
       <Loader isLoading={isLoading}>
-        <div className="mt-7 bg-white p-8 rounded shadow-md">
+        <div className="mt-7 bg-white p-4 lg:p-8 rounded shadow-md">
           <EditPosterForm
             id={id}
             posterEditId={posterEditId}

@@ -15,7 +15,7 @@ function Cards() {
     {
       title: "Links",
       count: 10,
-      link: "/link",
+      link: "/links",
     },
     {
       title: "ID Card",

@@ -1,13 +1,19 @@
 import { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { dashboardLinks } from "./Sidebar/navlinks/dashboardLinks";
+import useToggle from "../../hooks/useToggle";
 // import PageHeading from "./PageHeading";
 
 function Layout({ children, heading }) {
-  const [showMenu, setShowMenu] = useState(true);
+  // const [showMenu, setShowMenu] = useState(false);
+  const { toggle: showMenu, setToggle: setShowMenu, node } = useToggle();
+
+  Router.events.on("routeChangeStart", (url) => {
+    setShowMenu(false);
+  });
 
   const { pathname } = useRouter();
 
@@ -35,17 +41,23 @@ function Layout({ children, heading }) {
 
   return (
     <>
-      <div className="flex">
+      <div className="lg:flex">
         <Sidebar
           showMenu={showMenu}
           setShowMenu={setShowMenu}
+          node={node}
           navLinks={filteredLinks()}
         />
 
-        <div className="flex-1">
-          <Header admin={admin} username={username} />
+        <div className="lg:flex-1">
+          <Header
+            admin={admin}
+            username={username}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
 
-          <div className="p-7">
+          <div className="py-7 px-2 lg:px-7">
             {/* <PageHeading /> */}
 
             {children}

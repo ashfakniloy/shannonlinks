@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
-function useDropdown() {
-  const [showDropdown, setShowDropdown] = useState("");
+function useToggle() {
+  const [toggle, setToggle] = useState("");
   const node = useRef(null);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ function useDropdown() {
     if (node?.current?.contains(e.target)) {
       return;
     }
-    setShowDropdown(false);
+    setToggle(false);
   };
 
-  return { showDropdown, setShowDropdown, node };
+  return { toggle, setToggle, node };
 }
 
-export default useDropdown;
+export default useToggle;

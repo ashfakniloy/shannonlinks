@@ -65,7 +65,7 @@ function PosterLinks({ id, admin }) {
   // };
 
   return (
-    <div className="">
+    <div className="relative">
       {/* <div className="flex items-center gap-3">
         <span className="text-[28px] text-custom-blue2">
           <FaGlobe />
@@ -74,7 +74,7 @@ function PosterLinks({ id, admin }) {
       </div> */}
 
       <Loader isLoading={isLoading}>
-        <div className="mt-7 bg-white p-8 rounded shadow-md">
+        <div className="mt-7 bg-white p-4 lg:p-8  rounded shadow-md">
           <h4 className="text-xl font-semibold">All Links</h4>
           {sites && (
             <Table columnsHeading={posterLinksColumn} usersData={sites} />
