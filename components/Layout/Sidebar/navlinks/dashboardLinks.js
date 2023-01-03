@@ -1,4 +1,11 @@
-import { FaHome, FaEnvelope, FaUsers, FaImage, FaGlobe } from "react-icons/fa";
+import {
+  FaHome,
+  FaEnvelope,
+  FaUsers,
+  FaImage,
+  FaGlobe,
+  FaMousePointer,
+} from "react-icons/fa";
 
 export const dashboardLinks = [
   {
@@ -36,6 +43,12 @@ export const dashboardLinks = [
     name: "Links",
     link: "/links",
     icon: <FaGlobe />,
+  },
+  {
+    id: 7,
+    name: "Clicks",
+    link: "/clicks",
+    icon: <FaMousePointer />,
   },
 ];
 

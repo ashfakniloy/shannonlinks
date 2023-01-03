@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
-import React, { useState } from "react";
+// import { useSession } from "next-auth/react";
+// import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp, FaBars, FaUserCircle } from "react-icons/fa";
 import useLogOut from "../../../hooks/useLogOut";
 import useToggle from "../../../hooks/useToggle";
@@ -58,22 +58,21 @@ function Header({ admin, username, showMenu, setShowMenu }) {
             </button>
           </div>
         </div>
-
-        <div
-          ref={node}
-          className={`lg:hidden flex flex-col items-center bg-custom-blue5 absolute top-[68px] w-full py-7 text-sm text-white font-semibold shadow-lg ease-out duration-300 z-10 origin-top
-            ${toggle ? "block" : "hidden"}`}
+      </div>
+      <div
+        ref={node}
+        className={`lg:hidden flex flex-col items-center bg-custom-blue5 absolute top-[68px] w-full py-7 text-sm text-white font-semibold shadow-md ease-out duration-300 z-10
+            ${toggle ? "translate-y-0" : "-translate-y-full shadow-none"}`}
+      >
+        <p className="py-3">Username: {username}</p>
+        <p className="py-3">Role : {admin ? "Admin" : "Poster"}</p>
+        <button
+          type="button"
+          className="mt-2 px-5  py-3 bg-custom-blue hover:bg-opacity-80 text-sm rounded-lg active:scale-95 transition duration-200"
+          onClick={handleLogout}
         >
-          <p className="py-3">Username: {username}</p>
-          <p className="py-3">Role : {admin ? "Admin" : "Poster"}</p>
-          <button
-            type="button"
-            className="mt-2 px-5  py-3 bg-custom-blue hover:bg-opacity-80 text-sm rounded-lg active:scale-95 transition duration-200"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
+          Logout
+        </button>
       </div>
     </div>
   );

@@ -14,12 +14,12 @@ import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 //   return (
 //     <div className="">
 //       <label {...props}>{label}</label>
-//       <div className="mt-1 relative">
+//       <div className="relative mt-1">
 //         <Field
-//           className="p-2 w-full outline-none bg-slate-100 border border-slate-300 focus:border-slate-500"
+//           className="w-full p-2 border outline-none bg-slate-100 border-slate-300 focus:border-slate-500"
 //           {...props}
 //         />
-//         <p className="absolute -bottom-4 text-red-600 text-xs">
+//         <p className="absolute text-xs text-red-600 -bottom-4">
 //           <ErrorMessage {...props} />
 //         </p>
 //       </div>
@@ -32,7 +32,7 @@ export const TextField = ({ label, ...props }) => {
     <div className="">
       <label className="font-semibold text-gray-600">
         {label}
-        <div className="mt-1 relative">
+        <div className="relative mt-1">
           <Field
             className="p-2.5 w-full outline-none text-sm bg-gray-50 border border-gray-200 focus:border-gray-300 focus:shadow"
             // id={name}
@@ -40,7 +40,7 @@ export const TextField = ({ label, ...props }) => {
             {...props}
             required
           />
-          <p className="absolute -bottom-4 text-red-600 text-xs">
+          <p className="absolute text-xs text-red-600 -bottom-4">
             <ErrorMessage {...props} />
           </p>
         </div>
@@ -56,7 +56,7 @@ export const PasswordField = ({ label, ...props }) => {
     <div className="">
       <label className="font-semibold text-gray-600">
         {label}
-        <div className="mt-1 relative">
+        <div className="relative mt-1">
           <Field
             className="p-2.5 w-full outline-none bg-gray-50 border border-gray-200 focus:border-gray-300 focus:shadow"
             // id={name}
@@ -66,10 +66,10 @@ export const PasswordField = ({ label, ...props }) => {
             autoComplete="on"
             required
           />
-          <p className="absolute -bottom-4 text-red-600 text-xs">
+          <p className="absolute text-xs text-red-600 -bottom-4">
             <ErrorMessage {...props} />
           </p>
-          <div className="absolute right-3 flex items-center inset-y-0">
+          <div className="absolute inset-y-0 flex items-center right-3">
             <span
               className="p-[6px] text-lg cursor-pointer hover:bg-gray-200 active:bg-gray-300 rounded-full text-black/60"
               onClick={() => setShowPassword(!showPassword)}

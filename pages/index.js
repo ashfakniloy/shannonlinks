@@ -11,7 +11,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold text-custom-gray2">Dashboard</h1>
       </div>
 
-      <div className="mt-7 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-8 mt-7 md:grid-cols-2 ">
         <Cards />
       </div>
     </div>

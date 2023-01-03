@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FaAngleRight, FaAngleLeft, FaAngleDown } from "react-icons/fa";
-import { MdSchool } from "react-icons/md";
-// import SubMenu from "./SubMenu";
-import Menu from "./Menu";
-import { dashboardLinks } from "./navlinks/dashboardLinks";
-import { useSession } from "next-auth/react";
+import { FaAngleLeft } from "react-icons/fa";
 
 function Sidebar({ showMenu, setShowMenu, node, name, navLinks }) {
   // const [role, setRole] = useState("root");
@@ -16,7 +11,7 @@ function Sidebar({ showMenu, setShowMenu, node, name, navLinks }) {
 
   // const username = data?.user?.username;
 
-  const [active, setActive] = useState("");
+  // const [active, setActive] = useState("");
 
   const activeClass = (path) => {
     // router.pathname === path
@@ -32,21 +27,21 @@ function Sidebar({ showMenu, setShowMenu, node, name, navLinks }) {
 
   useEffect(() => {
     if (showMenu) {
-      // document.body.classList.add("active-sidebar");
       document.body.classList.add("overflow-y-hidden");
     }
-    // else {
-    //   document.body.classList.remove("active-sidebar");
-    // }
-    // return () => document.body.classList.remove("active-sidebar");
+
     return () => document.body.classList.remove("overflow-y-hidden");
   }, [showMenu]);
 
   return (
     <div
-      className={
-        showMenu ? "fixed inset-0 bg-black/50 z-30 lg:bg-transparent" : ""
-      }
+      className={`
+        ${
+          showMenu
+            ? "fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:bg-transparent"
+            : ""
+        }
+      `}
     >
       <div
         ref={node}
@@ -75,7 +70,6 @@ function Sidebar({ showMenu, setShowMenu, node, name, navLinks }) {
                     className={`px-3 py-3 flex justify-between items-center font-semibold transition duration-300 rounded-sm ${activeClass(
                       navLink.link
                     )}`}
-                    // onClick={() => toggle(navLink.name)}
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-[15px]">{navLink.icon}</span>
@@ -85,14 +79,6 @@ function Sidebar({ showMenu, setShowMenu, node, name, navLinks }) {
                   </div>
                 </Link>
               </div>
-              // <Menu
-              //   key={i}
-              //   showMenu={showMenu}
-              //   setShowMenu={setShowMenu}
-              //   active={active}
-              //   setActive={setActive}
-              //   navLink={navLink}
-              // />
             ))}
           </div>
         </div>

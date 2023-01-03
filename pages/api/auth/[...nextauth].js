@@ -31,12 +31,12 @@ const nextAuthOptions = (req, res) => {
 
           const user = await response.json();
 
-          // console.log("auth", user);
+          console.log("auth", user);
 
           // console.log("main", url);
 
           // if (response.ok && user) {
-          if (response.ok) {
+          if (response.ok && user.id) {
             // res.setHeader("Set-Cookie", [
             //   // cookie.serialize("token", user.token, {
             //   //   httpOnly: true,

@@ -31,7 +31,7 @@ function CollectionsPage() {
 
       <Loader isLoading={isLoading}>
         <div className="mt-7">
-          <div className="bg-white p-4 lg:p-8 rounded shadow-md">
+          <div className="p-4 bg-white rounded shadow-md lg:p-8">
             {details && (
               <Table columnsHeading={collectionColumn} usersData={details} />
             )}
